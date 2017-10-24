@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="SmartHome.MainSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SmartHome"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="NormalTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="Title"  Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="20"/>
+        <TextBlock Text="Night mode:"  FontSize="20"  Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom" TextWrapping="Wrap" HorizontalAlignment="Left" TextAlignment="Left"/>
+        <ToggleSwitch x:Name="IsNightMode" OffContent="Off " OnContent="On" Grid.Column="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="50" Height="35" Background="Transparent" HorizontalAlignment="Left" Grid.Row="2" Toggled="IsAuto_Changed" />
+        <TextBlock Text="Control mode for all units:"  FontSize="20"  Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" TextWrapping="Wrap" HorizontalAlignment="Left" TextAlignment="Left"/>
+        <ToggleSwitch x:Name="IsAuto" OffContent="Manual " OnContent="Auto" Grid.Column="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="50" Height="35" Background="Transparent" HorizontalAlignment="Left" Grid.Row="3" Toggled="IsAuto_Changed" />
+        <Button Content="Done" Grid.Column="3"  Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Tapped="Button_Tapped"/>
+
+    </Grid>
+
+</Page>

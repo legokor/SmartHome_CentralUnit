@@ -1,0 +1,33 @@
+﻿<ResourceDictionary
+    x:Name="NormalTheme"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SmartHome">
+
+    <SolidColorBrush x:Key="BackgroundBrush" Color="AliceBlue"/>
+    <SolidColorBrush x:Key="ListViewBackgroundBrush" Color="AliceBlue"/>
+    <SolidColorBrush x:Key="ListViewBorderBrush" Color="Black"/>
+    <SolidColorBrush x:Key="FontColor" Color="Black"/>
+    <x:String x:Key="BackButton">/Assets/Back_Button.png</x:String>
+    <x:String x:Key="SelectButton">/Assets/Ok_Button.png</x:String>
+    <x:String x:Key="SettingsButton">/Assets/settings.png</x:String>
+    <x:String x:Key="AddRoomButton">/Assets/Add_Room.png</x:String>
+    <x:String x:Key="DecreaseButton">/Assets/Minus_Button.png</x:String>
+    <x:String x:Key="RoomsButton">/Assets/Rooms_Button.png</x:String>
+    <x:String x:Key="DeleteButton">/Assets/Delete_Button.png</x:String>
+    <x:String x:Key="NewButton">/Assets/New_Button.png</x:String>
+    <BitmapImage  x:Key="ControlButton" UriSource="/Assets/Control_Button.png"/>
+
+    <Style  TargetType="TextBlock" x:Name="Datas">
+        <Setter Property="Foreground" Value="{StaticResource FontColor}"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="5 1 1 1"/>
+        <Setter Property="FontSize" Value="0.5"/>
+    </Style>
+
+    <SolidColorBrush x:Key="LightON" Color="Yellow"/>
+    <SolidColorBrush x:Key="LightOFF" Color="Gray"/>
+    <SolidColorBrush x:Key="AutoON" Color="LightBlue"/>
+</ResourceDictionary>
