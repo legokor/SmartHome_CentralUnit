@@ -83,10 +83,22 @@ namespace SmartHome
             {
                 StartServer();
                 RoomCreater.LoadListFromFile();
+                UserManager.CreateUser("alma", "csabesz");
             }
 
             RefreshAvgTemp("init");
             ViewManager.ResreshSenderDataEvent += RefreshAvgTemp;
+
+            if(UserManager.IsLogined)
+            {
+                BTLogin.Visibility = Visibility.Collapsed;
+                BTLogout.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BTLogin.Visibility = Visibility.Visible;
+                BTLogout.Visibility = Visibility.Collapsed;
+            }
         }
 
 
@@ -110,6 +122,31 @@ namespace SmartHome
                 await dialog.ShowAsync();
                 this.Frame.Navigate(typeof(Localizer));
             }
+        }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+           
+                ViewManager.ResreshSenderDataEvent -= RefreshAvgTemp;
+                StopClock();
+                this.Frame.Navigate(typeof(LoginScreen));            
+        }
+
+        private async void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            UserManager.Logout();
+            ViewManager.ResreshSenderDataEvent -= RefreshAvgTemp;
+            StopClock();
+            ContentDialogWithOK dialog = new ContentDialogWithOK
+            {
+                DataContext = new
+                {
+                    MsgText = "Succesful logout!"
+                } 
+
+            };
+            await dialog.ShowAsync();
+            this.Frame.Navigate(typeof(MainPage));
         }
 
         private void Bt_Locate(object sender, RoutedEventArgs e)

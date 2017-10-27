@@ -8,9 +8,10 @@ using SmartHome;
 namespace SmartHome.Migrations
 {
     [DbContext(typeof(Model))]
-    partial class ModelModelSnapshot : ModelSnapshot
+    [Migration("20171026194712_MyFirstMigration")]
+    partial class MyFirstMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");

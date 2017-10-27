@@ -72,6 +72,34 @@
                 <Image Source="/Assets/settings.png" Width="50" Height="50" MinWidth="50" MinHeight="50"/>
             </Button>
         </Border>
+        <Border Name="BDLogin"          
+            Grid.Column="0"
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            VerticalAlignment="Top"
+            Margin="0 10 0 0"
+            HorizontalAlignment="Left">
+            <Button Name="BTLogin"
+                    FontSize="6"
+                    VerticalContentAlignment="Center" 
+                    HorizontalContentAlignment="Center" Background="Transparent" Click="Login_Click">
+                <Image Source="/Assets/Login_Button.png" Width="50" Height="50" MinWidth="50" MinHeight="50"/>
+            </Button>
+        </Border>
+        <Border Name="BDLogout"   
+            Grid.Column="0"
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            VerticalAlignment="Top"
+            Margin="0 10 0 0"
+            HorizontalAlignment="Left">
+            <Button Name="BTLogout"
+                    FontSize="6"
+                    VerticalContentAlignment="Center" 
+                    HorizontalContentAlignment="Center" Background="Transparent" Click="Logout_Click">
+                <Image Source="/Assets/Logout_Button.png" Width="50" Height="50" MinWidth="50" MinHeight="50"/>
+            </Button>
+        </Border>
         <Border Grid.Column="0" 
                 Grid.Row="2"
                 HorizontalAlignment="Right">

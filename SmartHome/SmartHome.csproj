@@ -116,6 +116,9 @@
     <Compile Include="Localizer.xaml.cs">
       <DependentUpon>Localizer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LoginScreen.xaml.cs">
+      <DependentUpon>LoginScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -125,9 +128,9 @@
     <Compile Include="Map.xaml.cs">
       <DependentUpon>Map.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20170926131047_MyFirstMigration.cs" />
-    <Compile Include="Migrations\20170926131047_MyFirstMigration.designer.cs">
-      <DependentUpon>20170926131047_MyFirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\20171026194712_MyFirstMigration.cs" />
+    <Compile Include="Migrations\20171026194712_MyFirstMigration.designer.cs">
+      <DependentUpon>20171026194712_MyFirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ModelModelSnapshot.cs" />
     <Compile Include="Model.cs" />
@@ -147,6 +150,8 @@
     </Compile>
     <Compile Include="UdpServer.cs" />
     <Compile Include="Unit.cs" />
+    <Compile Include="UserClass.cs" />
+    <Compile Include="UserManager.cs" />
     <Compile Include="ViewManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -160,12 +165,15 @@
     <Content Include="Assets\Back_Button.png" />
     <Content Include="Assets\Control_Button.png" />
     <Content Include="Assets\Delete_Button.png" />
+    <Content Include="Assets\login_button.png" />
+    <Content Include="Assets\logout_button.png" />
     <Content Include="Assets\Minus_Button.png" />
     <Content Include="Assets\New_Button.png" />
     <Content Include="Assets\Ok_Button.png" />
     <Content Include="Assets\Rooms_Button.png" />
     <Content Include="Assets\Select_Button.png" />
     <Content Include="Assets\settings.png" />
+    <Content Include="Assets\user_button.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -197,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Localizer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -261,6 +273,7 @@
       <Version>2.3.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
