@@ -14,7 +14,7 @@ namespace SmartHome
         private string password;
 
         public string Hash { get; set; }
-        public AccesLevel Level { get; set; } = AccesLevel.Zero;
+        public AccesLevel Level { get; set; } = AccesLevel.Minimal;
 
         public UserClass(User user)
         {
@@ -33,7 +33,7 @@ namespace SmartHome
             Email = user.email;
             EncryptedPassword = user.password;
             Hash = user.hash;
-            Level = AccesLevel.Full;
+            Level = AccesLevel.Admin;
         }
 
         public void SaveUser()
@@ -58,6 +58,14 @@ namespace SmartHome
             }           
         }
 
+        public static UserClass GetUser(string email)
+        {
+            var user = DBInstance.FindUser(email);
+            if (user == null) return null;
+            return new UserClass(user);
+
+        }
+
         public void ModifyPassword(string newPassword)
         {
             var user = new UserClass(DBInstance.FindUser(this.Email));
@@ -67,6 +75,19 @@ namespace SmartHome
                 user.EncryptedPassword = newEncryptedPassword;
             }
             DBInstance.UpdateUser(user);
+        }
+
+        public async Task SendForgottenEmail(string password)
+        {
+            var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
+            emailMessage.Body = "Your temporary password is: "+password;
+
+
+            var emailRecipient = new Windows.ApplicationModel.Email.EmailRecipient(this.Email);
+            emailMessage.To.Add(emailRecipient);
+            emailMessage.Subject = "Forgotten password";
+
+            await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
         }
     }
 }

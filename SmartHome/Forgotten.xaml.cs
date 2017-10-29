@@ -20,41 +20,38 @@ namespace SmartHome
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class LoginScreen : Page
+    public sealed partial class Forgotten : Page
     {
-        public LoginScreen()
+        public Forgotten()
         {
             this.InitializeComponent();
         }
 
-        private async void Login_Click(object sender, RoutedEventArgs e)
+        private async void Send_Click(object sender, RoutedEventArgs e)
         {
-            if(UserManager.Login
-                (PasswordBox.Password, EmailBox.Text))
+            if(UserManager.SendForgottenEmail(EmailBox.Text))
             {
-                Frame.Navigate(typeof(MainPage));
+                ContentDialogWithOK dialog = new ContentDialogWithOK
+                {
+                    DataContext = new
+                    {
+                        MsgText = "The new password has been sent to your email!"
+                    }
+                };
+                await dialog.ShowAsync();
+                Frame.Navigate(typeof(LoginScreen));
             }
             else
-            {            
-            ContentDialogWithOK dialog = new ContentDialogWithOK
             {
-                DataContext = new
+                ContentDialogWithOK dialog = new ContentDialogWithOK
                 {
-                    MsgText = "Invalid password or email!"
-                }
-            };
-            await dialog.ShowAsync();
-            PasswordBox.Password = "";
+                    DataContext = new
+                    {
+                        MsgText = "Invalid email!"
+                    }
+                };
             }
-        }
-       
-        private void Create_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(CreateUser));
-        }
-        private void Forgotten_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(Forgotten));
+            
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

@@ -17,7 +17,7 @@ namespace SmartHome
 
         public static readonly DependencyProperty AvgTempDependencyProperty =
             DependencyProperty.Register("AvgTemp", typeof(string), typeof(MainPage), new PropertyMetadata(string.Empty));
-        
+        public int Level { get; set; } = (int)UserManager.Level;
         public string AvgTemp
         {
             get { return (string)GetValue(AvgTempDependencyProperty); }
@@ -83,22 +83,18 @@ namespace SmartHome
             {
                 StartServer();
                 RoomCreater.LoadListFromFile();
-                UserManager.CreateUser("alma", "csabesz");
+             /*   var user = new UserClass();
+                user.Email = "admin";
+                user.Hash = UserManager.GetSalt();
+                user.EncryptedPassword = UserManager.EncodePassword("admin", user.Hash);
+                user.Level = AccesLevel.Admin;
+                DBInstance.SaveUser(user);*/
             }
 
             RefreshAvgTemp("init");
             ViewManager.ResreshSenderDataEvent += RefreshAvgTemp;
 
-            if(UserManager.IsLogined)
-            {
-                BTLogin.Visibility = Visibility.Collapsed;
-                BTLogout.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                BTLogin.Visibility = Visibility.Visible;
-                BTLogout.Visibility = Visibility.Collapsed;
-            }
+           
         }
 
 

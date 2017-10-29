@@ -5,6 +5,7 @@
     xmlns:local="using:SmartHome"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:src="using:SmartHome.Converters"
     mc:Ignorable="d">
     
     <Page.Resources>
@@ -12,6 +13,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="NormalTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <src:ConverterToNormal x:Key="ConverterToNormal"/>
         </ResourceDictionary>
     </Page.Resources>
 
@@ -35,7 +37,8 @@
         <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Click="Button_Click" Background="Transparent">
             <Image Source="{StaticResource BackButton}" Width="100" Height="60" MinWidth="50" MinHeight="50"/>
         </Button>
-        <ToggleSwitch x:Name="IsDelete" OffContent="Select" OnContent="Delete" Grid.Column="0" Grid.ColumnSpan="3" Width="100" Height="60" Background="Transparent" HorizontalAlignment="Right" Grid.Row="2" Toggled="IsDelete_Toggled" />
+        <ToggleSwitch x:Name="IsDelete" OffContent="Select" OnContent="Delete" Grid.Column="0" Grid.ColumnSpan="3" Width="100" Height="60" Background="Transparent" HorizontalAlignment="Right" Grid.Row="2" Toggled="IsDelete_Toggled" 
+                      Visibility="{Binding Level, Converter={StaticResource ConverterToNormal}}" />
 
     </Grid>
 </Page>

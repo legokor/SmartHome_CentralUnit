@@ -20,41 +20,21 @@ namespace SmartHome
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class LoginScreen : Page
+    public sealed partial class CreateUser : Page
     {
-        public LoginScreen()
+        public CreateUser()
         {
             this.InitializeComponent();
         }
 
-        private async void Login_Click(object sender, RoutedEventArgs e)
-        {
-            if(UserManager.Login
-                (PasswordBox.Password, EmailBox.Text))
-            {
-                Frame.Navigate(typeof(MainPage));
-            }
-            else
-            {            
-            ContentDialogWithOK dialog = new ContentDialogWithOK
-            {
-                DataContext = new
-                {
-                    MsgText = "Invalid password or email!"
-                }
-            };
-            await dialog.ShowAsync();
-            PasswordBox.Password = "";
-            }
-        }
-       
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(CreateUser));
-        }
-        private void Forgotten_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(Forgotten));
+            if(EmailBox.Text != "" && PasswordBox.Password != "" && PasswordBox.Password == RePasswordBox.Password)
+            {
+                UserManager.CreateUser(PasswordBox.Password, EmailBox.Text);
+                UserManager.Login(PasswordBox.Password, EmailBox.Text);
+                Frame.Navigate(typeof(MainPage));
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

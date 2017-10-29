@@ -55,5 +55,15 @@ namespace SmartHome
                 room.SetAuto(toggle.IsOn);
             } 
         }
+
+        private void ModifyPassword_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ModifyPassword));
+        }
+
+        private void Users_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SetAcces));
+        }
     }
 }

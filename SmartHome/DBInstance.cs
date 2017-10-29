@@ -87,6 +87,15 @@ namespace SmartHome
             }
         }
 
+        public static List<User> AvailableUser()
+        {
+            using (var context = new Model())
+            {
+                var user = context.Users.ToList();
+                return user;
+            }
+        }
+
         public static void SaveAdmin(UserClass user)
         {
             using (var context = new Model())
@@ -95,7 +104,7 @@ namespace SmartHome
                 {
                     email = user.Email,
                     password = user.EncryptedPassword,
-                    accesLevel = AccesLevel.Full,
+                    accesLevel = AccesLevel.Admin,
                     hash = user.Hash
 
                 };
@@ -131,7 +140,7 @@ namespace SmartHome
                 {
                     newUser.email = user.Email;
                     newUser.password = user.EncryptedPassword;
-                    newUser.accesLevel = AccesLevel.Full;
+                    newUser.accesLevel = AccesLevel.Admin;
                     newUser.hash = user.Hash;
                 }
                 context.SaveChanges();
