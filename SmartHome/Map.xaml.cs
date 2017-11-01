@@ -22,11 +22,14 @@ namespace SmartHome
     /// </summary>
     public sealed partial class Map : Page
     {
+        public int Level { get; set; } = (int)UserManager.Level;
         private bool isDelete = false;
         private List<Button> buttons = new List<Button>();
         private RoutedEventHandler function;
         public Map()
-        {          
+        {
+            DataContext = this;
+
             this.InitializeComponent();          
         }
 
@@ -95,21 +98,23 @@ namespace SmartHome
                 if (room.Auto)
                 {
 
-                    button.Background = this.Resources["AutoON"] as SolidColorBrush;
+                    button.Background = Application.Current.Resources["AutoON"] as SolidColorBrush;
                 }
                 else
                 {
                     if (room.Light == "Default" || room.Light == "OFF")
                     {
-                        button.Background = this.Resources["LightOFF"] as SolidColorBrush;
+                        button.Background = Application.Current.Resources["LightOFF"] as SolidColorBrush;
                     }
                     else
                     {
-                        button.Background = this.Resources["LightON"] as SolidColorBrush;
+                        button.Background = Application.Current.Resources["LightON"] as SolidColorBrush;
                     }
                 }
                
             }
+            LightControl.Visibility = Visibility.Visible;
+            ColorInfo.Visibility = Visibility.Visible;
             IsDelete.IsEnabled = false;
         }
 
@@ -122,19 +127,19 @@ namespace SmartHome
                 if(room.Auto)
                 {
                     room.SetAuto(false);
-                    button.Background = this.Resources["LightON"] as SolidColorBrush;
+                    button.Background = Application.Current.Resources["LightON"] as SolidColorBrush;
                     room.TurnLightOn();
                 }
                 else
                 {
                     if (room.Light == "Default" || room.Light == "OFF")
                     {
-                        button.Background = this.Resources["LightON"] as SolidColorBrush;
-                        room.TurnLightOn();
+                        button.Background = Application.Current.Resources["AutoON"] as SolidColorBrush;
+                        room.SetAuto(true);
                     }
                     else
                     {
-                        button.Background = this.Resources["LightOFF"] as SolidColorBrush;
+                        button.Background = Application.Current.Resources["LightOFF"] as SolidColorBrush;
                         room.TurnLightOff();
                     }
                 }

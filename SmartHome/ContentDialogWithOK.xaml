@@ -10,9 +10,16 @@
     PrimaryButtonText="Ok"
     HorizontalContentAlignment="Center"
     VerticalContentAlignment="Center"
+    Background="{StaticResource BackgroundBrush}"
+    Foreground="{StaticResource FontColor}"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick" Loading="ContentDialog_Loading">
 
-    <Grid>
+    <ContentDialog.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+        </Style>
+    </ContentDialog.Resources>
+
+    <Grid Background="{StaticResource BackgroundBrush}">
         <TextBlock x:Name="Message" Text="{Binding MsgText}" TextWrapping="Wrap"></TextBlock>
     </Grid>
 </ContentDialog>

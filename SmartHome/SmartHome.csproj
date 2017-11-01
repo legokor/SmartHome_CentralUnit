@@ -52,6 +52,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
     <OutputPath>bin\ARM\Release\</OutputPath>
@@ -165,6 +166,7 @@
     <Compile Include="SetAcces.xaml.cs">
       <DependentUpon>SetAcces.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ThemeManager.cs" />
     <Compile Include="UdpServer.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="UserClass.cs" />
@@ -180,16 +182,28 @@
   <ItemGroup>
     <Content Include="Assets\Add_Room.png" />
     <Content Include="Assets\Back_Button.png" />
+    <Content Include="Assets\Back_Button_White.png" />
     <Content Include="Assets\Control_Button.png" />
+    <Content Include="Assets\Control_Button_White.png" />
     <Content Include="Assets\Delete_Button.png" />
+    <Content Include="Assets\Delete_Button_White.png" />
+    <Content Include="Assets\Add_Room_White.png" />
     <Content Include="Assets\login_button.png" />
+    <Content Include="Assets\Login_Button_White.png" />
     <Content Include="Assets\logout_button.png" />
+    <Content Include="Assets\Logout_Button_White.png" />
     <Content Include="Assets\Minus_Button.png" />
+    <Content Include="Assets\Minus_Button_White.png" />
     <Content Include="Assets\New_Button.png" />
+    <Content Include="Assets\New_Button_White.png" />
     <Content Include="Assets\Ok_Button.png" />
+    <Content Include="Assets\Ok_Button_White.png" />
     <Content Include="Assets\Rooms_Button.png" />
+    <Content Include="Assets\Rooms_Button_White.png" />
     <Content Include="Assets\Select_Button.png" />
+    <Content Include="Assets\Select_Button_White.png" />
     <Content Include="Assets\settings.png" />
+    <Content Include="Assets\settings_White.png" />
     <Content Include="Assets\user_button.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -249,6 +263,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NightTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="NormalTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -293,6 +312,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="EASendMail">
+      <Version>7.3.1.8</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
       <Version>1.1.2</Version>
     </PackageReference>

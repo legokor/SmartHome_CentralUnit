@@ -7,14 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="NormalTheme.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Page.Resources>
-
     <Grid  Background="{StaticResource BackgroundBrush}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*" />
@@ -30,19 +22,19 @@
             <ColumnDefinition Width="0.1*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Create an account!" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1" HorizontalAlignment="Center" FontSize="20" Margin="5" VerticalAlignment="Top"/>
-        <TextBlock Text="Email:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="20" Margin="5" VerticalAlignment="Top"/>
-        <TextBox x:Name="EmailBox" Text="" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Width="250" Height="40" VerticalAlignment="top" Margin="5" FontSize="10"/>
-        <TextBlock Text="Password:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="20" Margin="5" VerticalAlignment="Bottom"/>
-        <PasswordBox x:Name="PasswordBox" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Width="250" Height="40" VerticalAlignment="Bottom" Margin="5"  PasswordRevealMode="Peek" FontSize="10"/>
-        <TextBlock Text="Confirm:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" FontSize="20" Margin="5" VerticalAlignment="Top"/>
-        <PasswordBox x:Name="RePasswordBox" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left" Width="250" Height="40" VerticalAlignment="Top" Margin="5"  PasswordRevealMode="Peek" FontSize="10"/>
-        <Button Content="Create" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="Create_Click" Margin="0,5,0,0"/>
+        <TextBlock Text="Create an account!" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1" HorizontalAlignment="Center" FontSize="20" Margin="5" VerticalAlignment="Top" Style="{StaticResource TextBlockStyle}"/>
+        <TextBlock Text="Email:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="20" Margin="5" VerticalAlignment="Top" Style="{StaticResource TextBlockStyle}"/>
+        <TextBox x:Name="EmailBox" Text="" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Width="250" Height="40" VerticalAlignment="top" Margin="5" FontSize="10" Style="{StaticResource TextBoxStyle}"/>
+        <TextBlock Text="Password:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="20" Margin="5" VerticalAlignment="Bottom" Style="{StaticResource TextBlockStyle}"/>
+        <PasswordBox x:Name="PasswordBox" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Width="250" Height="40" VerticalAlignment="Bottom" Margin="5"  PasswordRevealMode="Peek" FontSize="10" Style="{StaticResource PasswordBoxStyle}"/>
+        <TextBlock Text="Confirm:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" FontSize="20" Margin="5" VerticalAlignment="Top" Style="{StaticResource TextBlockStyle}"/>
+        <PasswordBox x:Name="RePasswordBox" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left" Width="250" Height="40" VerticalAlignment="Top" Margin="5"  PasswordRevealMode="Peek" FontSize="10" Style="{StaticResource PasswordBoxStyle}"/>
+        <Button Content="Create" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="Create_Click" Margin="0,5,0,0" Style="{StaticResource ButtonStyle}"/>
         <Button Grid.Column="2" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Top"
                     FontSize="6"
                     VerticalContentAlignment="Center" 
                     HorizontalContentAlignment="Center" Background="Transparent" Click="Back_Click">
-            <Image Source="/Assets/Back_Button.png" Width="50" Height="50" MinWidth="50" MinHeight="50"/>
+            <Image Source="{StaticResource BackButton}" Width="50" Height="50" MinWidth="50" MinHeight="50"/>
         </Button>
     </Grid>
 </Page>

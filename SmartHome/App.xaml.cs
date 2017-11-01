@@ -32,12 +32,14 @@ namespace SmartHome
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
+           
             using (var db = new Model())
             {
                 db.Database.Migrate();
             }
         }
 
+        
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.

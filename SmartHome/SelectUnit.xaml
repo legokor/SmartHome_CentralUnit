@@ -8,14 +8,6 @@
     mc:Ignorable="d">
 
 
-    <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="NormalTheme.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Page.Resources>
-
     <Grid Background="{StaticResource BackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
@@ -32,7 +24,7 @@
         <TextBlock Grid.Row="0"
                    Grid.Column="0"
                    Grid.ColumnSpan="3"
-            Text="{Binding Path=roomName}"
+            Text="{Binding Path=RoomName}"
                    TextWrapping="WrapWholeWords"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"
@@ -89,6 +81,21 @@
 
                 <Image Source="{StaticResource BackButton}" Width="100" Height="60" MinWidth="50" MinHeight="50"  Grid.Column="3"></Image>
             </Button>
+        </Border>
+
+        <Border
+          
+            HorizontalAlignment="Left"
+            Grid.Column="0"
+            Grid.Row="1"
+            Margin="5">
+            <StackPanel Orientation="Horizontal">
+            <TextBlock 
+                     FontWeight="Bold" Text="{Binding Temp}" Style="{StaticResource TextBlockStyle}"/>
+                <TextBlock 
+                    FontWeight="Bold" Text="°C" Style="{StaticResource TextBlockStyle}"/>
+            </StackPanel>
+
         </Border>
         <Border Name="BDSelect"
             Grid.Column="2"

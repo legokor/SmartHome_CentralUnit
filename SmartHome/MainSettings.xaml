@@ -10,9 +10,6 @@
 
     <Page.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="NormalTheme.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
             <src:ConverterToMinimal x:Key="ConverterToMinimal"/>
             <src:ConverterToAdmin x:Key="ConverterToAdmin"/>
         </ResourceDictionary>
@@ -30,16 +27,16 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="Title"  Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="20"/>
-        <TextBlock Text="Night mode:"  FontSize="20"  Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom" TextWrapping="Wrap" HorizontalAlignment="Left" TextAlignment="Left"/>
-        <ToggleSwitch x:Name="IsNightMode" OffContent="Off " OnContent="On" Grid.Column="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="50" Height="35" Background="Transparent" HorizontalAlignment="Left" Grid.Row="2" Toggled="IsAuto_Changed" />
-        <TextBlock Text="Control mode for all units:"  FontSize="20"  Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" TextWrapping="Wrap" HorizontalAlignment="Left" TextAlignment="Left"/>
-        <ToggleSwitch x:Name="IsAuto" OffContent="Manual " OnContent="Auto" Grid.Column="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="50" Height="35" Background="Transparent" HorizontalAlignment="Left" Grid.Row="3" Toggled="IsAuto_Changed" />
-        <Button Content="Done" Grid.Column="3"  Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Tapped="Button_Tapped"/>
+            <TextBlock x:Name="Title"  Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="20" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Text="Night mode:"  FontSize="20"  Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom" TextWrapping="Wrap" HorizontalAlignment="Left" TextAlignment="Left" Style="{StaticResource TextBlockStyle}"/>
+        <ToggleSwitch x:Name="IsNightMode" OffContent="Off " OnContent="On" Grid.Column="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="50" Height="35" Background="Transparent" HorizontalAlignment="Left" Grid.Row="2" Toggled="IsThemeChanged_Changed" Style="{StaticResource ToggleSwitchStyle}" />
+            <TextBlock Text="Control mode for all units:"  FontSize="20"  Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" TextWrapping="Wrap" HorizontalAlignment="Left" TextAlignment="Left" Style="{StaticResource TextBlockStyle}"/>
+        <ToggleSwitch x:Name="IsAuto" OffContent="Manual " OnContent="Auto" Grid.Column="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="50" Height="35" Background="Transparent" HorizontalAlignment="Left" Grid.Row="3" Toggled="IsAuto_Changed" Style="{StaticResource ToggleSwitchStyle}" />
+            <Button Content="Done" Grid.Column="3"  Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Tapped="Button_Tapped" Style="{StaticResource ButtonStyle}"/>
         <Button Content="Modify Password" Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Tapped="ModifyPassword_Tapped"
-                Visibility="{Binding Level, Converter={StaticResource ConverterToMinimal}}" />
+                Visibility="{Binding Level, Converter={StaticResource ConverterToMinimal}}" Style="{StaticResource ButtonStyle}"/>
         <Button Content="User Management" Grid.Column="2"  Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Tapped="Users_Tapped"
-                Visibility="{Binding Level, Converter={StaticResource ConverterToAdmin}}" />
+                Visibility="{Binding Level, Converter={StaticResource ConverterToAdmin}}" Style="{StaticResource ButtonStyle}"/>
     </Grid>
 
 </Page>

@@ -7,12 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:src="using:SmartHome.Converters"
     mc:Ignorable="d">
-
     <Page.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="NormalTheme.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
             <src:ConverterOnlyNotLogin x:Key="ConverterOnlyNotLogin"/>
             <src:ConverterToMinimal x:Key="ConverterToMinimal"/>
             <src:ConverterToNormal x:Key="ConverterToNormal"/>
@@ -77,7 +73,7 @@
                     FontSize="6"
                     VerticalContentAlignment="Center" 
                     HorizontalContentAlignment="Center" Background="Transparent" Click="Setting_Click">
-                <Image Source="/Assets/settings.png" Width="50" Height="50" MinWidth="50" MinHeight="50"/>
+                <Image Source="{StaticResource SettingsButton}" Width="50" Height="50" MinWidth="50" MinHeight="50"/>
             </Button>
         </Border>
         <Border Name="BDLogin"          
@@ -92,7 +88,7 @@
                     FontSize="6"
                     VerticalContentAlignment="Center" 
                     HorizontalContentAlignment="Center" Background="Transparent" Click="Login_Click">
-                <Image Source="/Assets/Login_Button.png" Width="50" Height="50" MinWidth="50" MinHeight="50"/>
+                <Image Source="{StaticResource LoginButton}" Width="50" Height="50" MinWidth="50" MinHeight="50"/>
             </Button>
         </Border>
         <Border Name="BDLogout"   
@@ -107,7 +103,7 @@
                     FontSize="6"
                     VerticalContentAlignment="Center" 
                     HorizontalContentAlignment="Center" Background="Transparent" Click="Logout_Click">
-                <Image Source="/Assets/Logout_Button.png" Width="50" Height="50" MinWidth="50" MinHeight="50"/>
+                <Image Source="{StaticResource LogoutButton}" Width="50" Height="50" MinWidth="50" MinHeight="50"/>
             </Button>
         </Border>
         <Border Grid.Column="0" 

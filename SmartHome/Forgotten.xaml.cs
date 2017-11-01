@@ -29,7 +29,7 @@ namespace SmartHome
 
         private async void Send_Click(object sender, RoutedEventArgs e)
         {
-            if(UserManager.SendForgottenEmail(EmailBox.Text))
+            if(await UserManager.SendForgottenEmail(EmailBox.Text))
             {
                 ContentDialogWithOK dialog = new ContentDialogWithOK
                 {

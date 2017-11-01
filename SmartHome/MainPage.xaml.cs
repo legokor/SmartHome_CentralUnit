@@ -64,39 +64,41 @@ namespace SmartHome
             _clockTimer.Start();
         }
 
-        private void StartServer()
-        {
-           // if (UdpServer.IsRunning == false)
-            {
-                UdpServer.IsRunning = true;
-               new UdpServer().RecMessage();
-            }
-        }
+        
 
         public MainPage()
         {
-            
+            if (UdpServer.IsRunning == false)
+            {
+                ThemeManager.SetNormalTheme();
+                StartServer();
+                RoomCreater.LoadListFromFile();
+
+                /*   var user = new UserClass();
+                   user.Email = "admin";
+                   user.Hash = UserManager.GetSalt();
+                   user.EncryptedPassword = UserManager.EncodePassword("admin", user.Hash);
+                   user.Level = AccesLevel.Admin;
+                   DBInstance.SaveUser(user);*/
+            }
             this.InitializeComponent();
             DataContext = this;
             InitClock();
-            if (UdpServer.IsRunning == false)
-            {
-                StartServer();
-                RoomCreater.LoadListFromFile();
-             /*   var user = new UserClass();
-                user.Email = "admin";
-                user.Hash = UserManager.GetSalt();
-                user.EncryptedPassword = UserManager.EncodePassword("admin", user.Hash);
-                user.Level = AccesLevel.Admin;
-                DBInstance.SaveUser(user);*/
-            }
+            
 
             RefreshAvgTemp("init");
             ViewManager.ResreshSenderDataEvent += RefreshAvgTemp;
 
            
         }
-
+        private void StartServer()
+        {
+            // if (UdpServer.IsRunning == false)
+            {
+                UdpServer.IsRunning = true;
+                new UdpServer().RecMessage();
+            }
+        }
 
         private async void Open_Config(object sender, RoutedEventArgs e)
         {

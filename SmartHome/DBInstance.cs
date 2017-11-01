@@ -140,7 +140,7 @@ namespace SmartHome
                 {
                     newUser.email = user.Email;
                     newUser.password = user.EncryptedPassword;
-                    newUser.accesLevel = AccesLevel.Admin;
+                    newUser.accesLevel = user.Level;
                     newUser.hash = user.Hash;
                 }
                 context.SaveChanges();

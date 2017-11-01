@@ -7,11 +7,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Title="Room name:"
+    Background="{StaticResource BackgroundBrush}"
+    Foreground="{StaticResource FontColor}"
     PrimaryButtonText="Cancel"
     SecondaryButtonText="Ok"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
     x:Name="Dialog">
+    <ContentDialog.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+        </Style>
+    </ContentDialog.Resources>
 
     <Grid>
         <TextBox Text="{Binding ElementName=Dialog, Path=Text, Mode=TwoWay}" />

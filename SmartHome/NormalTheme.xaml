@@ -8,16 +8,17 @@
     <SolidColorBrush x:Key="ListViewBackgroundBrush" Color="AliceBlue"/>
     <SolidColorBrush x:Key="ListViewBorderBrush" Color="Black"/>
     <SolidColorBrush x:Key="FontColor" Color="Black"/>
-    <x:String x:Key="BackButton">/Assets/Back_Button.png</x:String>
-    <x:String x:Key="SelectButton">/Assets/Ok_Button.png</x:String>
-    <x:String x:Key="SettingsButton">/Assets/settings.png</x:String>
-    <x:String x:Key="AddRoomButton">/Assets/Add_Room.png</x:String>
-    <x:String x:Key="DecreaseButton">/Assets/Minus_Button.png</x:String>
-    <x:String x:Key="RoomsButton">/Assets/Rooms_Button.png</x:String>
-    <x:String x:Key="DeleteButton">/Assets/Delete_Button.png</x:String>
-    <x:String x:Key="NewButton">/Assets/New_Button.png</x:String>
+    <BitmapImage x:Key="BackButton" UriSource="/Assets/Back_Button.png"/>
+    <BitmapImage x:Key="SelectButton" UriSource="/Assets/Ok_Button.png"/>
+    <BitmapImage x:Key="SettingsButton" UriSource="/Assets/settings.png"/>
+    <BitmapImage x:Key="AddRoomButton" UriSource="/Assets/Add_Room.png"/>
+    <BitmapImage x:Key="DecreaseButton" UriSource="/Assets/Minus_Button.png"/>
+    <BitmapImage x:Key="RoomsButton" UriSource="/Assets/Rooms_Button.png"/>
+    <BitmapImage x:Key="DeleteButton" UriSource="/Assets/Delete_Button.png"/>
+    <BitmapImage x:Key="NewButton" UriSource="/Assets/New_Button.png"/>
     <BitmapImage  x:Key="ControlButton" UriSource="/Assets/Control_Button.png"/>
-
+    <BitmapImage x:Key="LoginButton" UriSource="/Assets/Login_Button.png"/>
+    <BitmapImage  x:Key="LogoutButton" UriSource="/Assets/Logout_Button.png"/>
     <Style  TargetType="TextBlock" x:Name="Datas">
         <Setter Property="Foreground" Value="{StaticResource FontColor}"/>
         <Setter Property="FontSize" Value="13"/>
@@ -25,6 +26,31 @@
         <Setter Property="Height" Value="30"/>
         <Setter Property="Margin" Value="5 1 1 1"/>
         <Setter Property="FontSize" Value="0.5"/>
+    </Style>
+
+    <Style TargetType="Button" x:Name="ButtonStyle">
+        <Setter Property="Background" Value="LightGray"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+    </Style>
+
+    <Style TargetType="TextBox" x:Name="TextBoxStyle">
+        <Setter Property="Background" Value="LightGray"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+    </Style>
+    <Style TargetType="PasswordBox" x:Name="PasswordBoxStyle">
+        <Setter Property="Background" Value="LightGray"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+    </Style>
+
+    <Style TargetType="ToggleSwitch" x:Name="ToggleSwitchStyle">
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+    
+    <Style TargetType="TextBlock" x:Name="TextBlockStyle">
+        <Setter Property="Foreground" Value="Black"/>
     </Style>
 
     <SolidColorBrush x:Key="LightON" Color="Yellow"/>

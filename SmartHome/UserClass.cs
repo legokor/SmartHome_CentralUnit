@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EASendMailRT;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -77,17 +78,51 @@ namespace SmartHome
             DBInstance.UpdateUser(user);
         }
 
-        public async Task SendForgottenEmail(string password)
+        public async Task<bool> SendMail(string body, string title)
         {
-            var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
-            emailMessage.Body = "Your temporary password is: "+password;
+            String Result = "";
+            try
+            {
+                SmtpMail oMail = new SmtpMail("TryIt");
+                SmtpClient oSmtp = new SmtpClient();
 
+                // Set your gmail email address
+                oMail.From = new MailAddress("okosotthon.help@gmail.com");
 
-            var emailRecipient = new Windows.ApplicationModel.Email.EmailRecipient(this.Email);
-            emailMessage.To.Add(emailRecipient);
-            emailMessage.Subject = "Forgotten password";
+                // Add recipient email address, please change it to yours
+                oMail.To.Add(new MailAddress(Email));
 
-            await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
+                // Set email subject and email body text
+                oMail.Subject = title;
+                oMail.TextBody = body;
+
+                // Gmail SMTP server
+                SmtpServer oServer = new SmtpServer("smtp.gmail.com");
+
+                // User and password for ESMTP authentication
+                oServer.User = "okosotthon.help@gmail.com";
+                oServer.Password = "Alma1234";
+
+                // Use 465 port
+                oServer.Port = 465;
+                oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+                await oSmtp.SendMailAsync(oServer, oMail);
+                Result = "Email was sent successfully!";
+                return true;
+            }
+            catch (Exception ep)
+            {
+                Result = String.Format("Failed to send email with the following error: {0}", ep.Message);
+                return false;
+            }
+
+            // Display Result by Diaglog box
+            Windows.UI.Popups.MessageDialog dlg = new
+                Windows.UI.Popups.MessageDialog(Result);
+
+            await dlg.ShowAsync();
+
         }
     }
 }

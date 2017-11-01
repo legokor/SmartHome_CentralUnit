@@ -53,9 +53,29 @@ namespace SmartHome
             return ViewManager.CurrentNodes.Where((s => s.Location == Name));
         }
 
+        public IEnumerable<DataElement> GetDataElements()
+        {
+            var units = ViewManager.CurrentNodes.Where((s => s.Location == Name));
+            List<DataElement> list = new List<DataElement>();
+            foreach (var unit in units)
+            {
+                if(ViewManager.ActualDatas.ContainsKey(unit.Id))
+                {
+                    list.Add(ViewManager.ActualDatas[unit.Id]);
+                }                
+            }
+            return list;
+               
+
+        }
+
         public IEnumerable<Unit> GetPIRs()
         {
             return ViewManager.CurrentNodes.Where((s => s.Location == Name && s.Type == "PIR"));
+        }
+        public IEnumerable<Unit> GetSwitchers()
+        {
+            return ViewManager.CurrentNodes.Where((s => s.Location == Name && s.Type == "Switcher"));
         }
 
         public void AddUnit(string id)
@@ -128,7 +148,7 @@ namespace SmartHome
 
         public void TurnLightOn()
         {
-            foreach (var unit in GetUnits().Where(u => u.Type == "Switch"))
+            foreach (var unit in GetUnits().Where(u => u.Type == "Switcher"))
             {
                 string message = "CMD|" + unit.Id + "|1|\0";
                 UdpServer.SendMessage(message, 1080);                

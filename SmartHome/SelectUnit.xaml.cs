@@ -23,11 +23,21 @@ namespace SmartHome
     /// </summary>
     public sealed partial class SelectUnit : Page
     {
+
+        public static readonly DependencyProperty TempDependencyProperty =
+           DependencyProperty.Register("Temp", typeof(double), typeof(SelectUnit), new PropertyMetadata(string.Empty));
         private Room chosenPlace;
-        private string roomName;
+        public string RoomName { get; set; }
+
+        public double Temp
+        {
+            get { return (double)GetValue(TempDependencyProperty); }
+            set { SetValue(TempDependencyProperty, value); }
+        }
 
         public SelectUnit()
         {
+            DataContext = this;
             this.InitializeComponent();           
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -36,22 +46,35 @@ namespace SmartHome
             if (room != null)
             {
                 chosenPlace = room;
-                roomName = room.Name;
+                RoomName = room.Name;
             }
-            TBSelect.IsEnabled = false;
-            DataContext = this;
+            TBSelect.IsEnabled = false;          
             var units = chosenPlace.GetUnits();
             var ids = new List<string>();
             foreach (var unit in units)
             {
                 ids.Add(unit.Id);
             }
+            Temp = 0;
             Nodes.ItemsSource = ids;
+            ViewManager.ResreshSenderDataEvent += RefreshTemp;
+        }
+
+        public void RefreshTemp(string newSenderId)
+        {
+            int i = 0;
+            foreach(var element in chosenPlace.GetDataElements())
+            {
+                i++;
+                Temp += double.Parse(element.Temperature);
+            }
+            if (i != 0) Temp = Temp / i;
         }
 
 
         private void Open_HomePage(object sender, RoutedEventArgs e)
         {
+            ViewManager.ResreshSenderDataEvent -= RefreshTemp;
             this.Frame.Navigate(typeof(MainPage));
         }
 
@@ -63,17 +86,20 @@ namespace SmartHome
 
         private void TBSelect_Click(object sender, RoutedEventArgs e)
         {
+            ViewManager.ResreshSenderDataEvent -= RefreshTemp;
             ItemDatas.ChosenUnit = Nodes.SelectedItem.ToString();
             this.Frame.Navigate(typeof(ItemDatas));
         }
        
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
+            ViewManager.ResreshSenderDataEvent -= RefreshTemp;
             this.Frame.Navigate(typeof(RoomSettings), chosenPlace);
         }
 
         private void Bt_Delete(object sender, RoutedEventArgs e)
         {
+            ViewManager.ResreshSenderDataEvent -= RefreshTemp;
             ViewManager.UnitsToLocalize.Add(Nodes.SelectedItem as string);
             chosenPlace.RemoveUnit(Nodes.SelectedItem as string);
             this.Frame.Navigate(typeof(SelectUnit), chosenPlace);

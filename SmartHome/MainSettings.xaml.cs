@@ -23,9 +23,16 @@ namespace SmartHome
     public sealed partial class MainSettings : Page
     {
         public static bool Auto { get; set; } = true;
+        public int Level { get; set; } = (int)UserManager.Level;
+        public string theme { get; set; } = ThemeManager.CurrentTheme;
         public MainSettings()
         {
+            DataContext = this;
             this.InitializeComponent();
+            if(theme == "NightTheme")
+            {
+                IsNightMode.IsOn = true;
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -64,6 +71,19 @@ namespace SmartHome
         private void Users_Tapped(object sender, TappedRoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(SetAcces));
+        }
+
+        private void IsThemeChanged_Changed(object sender, RoutedEventArgs e)
+        {
+            var toggle = sender as ToggleSwitch;
+            if(toggle.IsOn)
+            {
+                ThemeManager.SetNightTheme();
+            }
+            else
+            {
+                ThemeManager.SetNormalTheme();
+            }           
         }
     }
 }

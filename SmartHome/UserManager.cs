@@ -61,6 +61,7 @@ namespace SmartHome
             user.Hash = GetSalt();
             user.EncryptedPassword = EncodePassword(pass, user.Hash);
             DBInstance.SaveUser(user);
+            user.SendMail("You have registered with your "+email+" email address!", "Succesfully registration in the SmartHome system!");
         }
 
         public static string GetSalt()
@@ -95,7 +96,7 @@ namespace SmartHome
             DBInstance.UpdateUser(user);
         }
 
-        public static bool SendForgottenEmail(string email)
+        public static async Task<bool> SendForgottenEmail(string email)
         {
             Random random = new Random();
             string password = null;
@@ -104,9 +105,15 @@ namespace SmartHome
                  .Select(s => s[random.Next(s.Length)]).ToArray());
             var user = UserClass.GetUser(email);
             if (user == null) return false;
-            user.SendForgottenEmail(password);
-            user.ModifyPassword(password);
-            return true;
-        }        
+
+            if (await user.SendMail("Your temporary password is: " + password, "Forgotten password"))
+            {
+                user.ModifyPassword(password);
+                return true;
+            }
+            else return false;
+            
+        }   
+        
     }
 }

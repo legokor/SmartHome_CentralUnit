@@ -92,9 +92,30 @@ namespace SmartHome
 
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
+                AutoLightControl(newdata);
                 ViewManager.AddToActualDatas(newdata);
             });
 
+        }
+
+        public static void AutoLightControl(DataElement newdata)
+        {
+            var unit = ViewManager.CurrentNodes.Where(u => u.Id == newdata.Id).FirstOrDefault();
+            if (unit.Type == "PIR")
+            {
+                Room room = ViewManager.Rooms.Where(r => r.Name == unit.Location).FirstOrDefault();
+                if (room.Auto)
+                {
+                    if (newdata.Movement == "1")
+                    {
+                        room.TurnLightOn();
+                    }
+                    else
+                    {
+                        room.TurnLightOff();
+                    }
+                }
+            }
         }
 
 
