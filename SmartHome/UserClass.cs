@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,28 +14,20 @@ namespace SmartHome
         public string Email { get; set; }
         public string EncryptedPassword { get; set; }
         private string password;
-
-        public string Hash { get; set; }
+        private string salt;
+        public string Salt { get { return salt; } }
         public AccesLevel Level { get; set; } = AccesLevel.Minimal;
 
         public UserClass(User user)
         {
             Email = user.email;
             EncryptedPassword = user.password;
-            Hash = user.hash;
+            salt = user.salt;
             Level = user.accesLevel;
         }
 
         public UserClass()
         {
-
-        }
-        public UserClass(Admin user)
-        {
-            Email = user.email;
-            EncryptedPassword = user.password;
-            Hash = user.hash;
-            Level = AccesLevel.Admin;
         }
 
         public void SaveUser()
@@ -42,37 +35,13 @@ namespace SmartHome
             DBInstance.SaveUser(this);
         }
 
-        
-
-        public static UserClass GetUser(string pass, string email)
-        {
-           var admin = DBInstance.FindAdmin(email, pass);
-            if (admin != null)
-            {
-                return new UserClass(admin);
-            }               
-            else
-            {
-                var user = DBInstance.FindUser(email, pass);
-                if (user == null) return null;
-                return new UserClass(user);
-            }           
-        }
-
-        public static UserClass GetUser(string email)
-        {
-            var user = DBInstance.FindUser(email);
-            if (user == null) return null;
-            return new UserClass(user);
-
-        }
-
         public void ModifyPassword(string newPassword)
         {
             var user = new UserClass(DBInstance.FindUser(this.Email));
             if (user != null)
             {
-                string newEncryptedPassword = UserManager.EncodePassword(newPassword, Hash);
+                user.GetSalt();
+                string newEncryptedPassword = user.EncodePassword(newPassword);
                 user.EncryptedPassword = newEncryptedPassword;
             }
             DBInstance.UpdateUser(user);
@@ -81,7 +50,7 @@ namespace SmartHome
         public async Task<bool> SendMail(string body, string title)
         {
             String Result = "";
-            try
+            try 
             {
                 SmtpMail oMail = new SmtpMail("TryIt");
                 SmtpClient oSmtp = new SmtpClient();
@@ -123,6 +92,27 @@ namespace SmartHome
 
             await dlg.ShowAsync();
 
+        }
+
+        public void GetSalt()
+        {
+            var rng = RandomNumberGenerator.Create();
+            var buff = new byte[32];
+            rng.GetBytes(buff);
+            salt = Convert.ToBase64String(buff);
+
+        }
+
+        public string EncodePassword(string password)
+        {
+            byte[] bytes = Encoding.Unicode.GetBytes(password);
+            byte[] src = Encoding.Unicode.GetBytes(Salt);
+            byte[] dst = new byte[src.Length + bytes.Length];
+            Buffer.BlockCopy(src, 0, dst, 0, src.Length);
+            Buffer.BlockCopy(bytes, 0, dst, src.Length, bytes.Length);
+            HashAlgorithm algorithm = SHA256.Create();
+            byte[] inarray = algorithm.ComputeHash(dst);
+            return Convert.ToBase64String(inarray);
         }
     }
 }

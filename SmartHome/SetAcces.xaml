@@ -15,8 +15,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
 
         </Grid.ColumnDefinitions>
@@ -37,7 +37,7 @@
                    />
         <Border Background="{StaticResource ListViewBackgroundBrush}"
                     CornerRadius="30"
-                    Width="150"
+                    Width="250"
                     BorderThickness="2"
                     BorderBrush="{StaticResource ListViewBorderBrush}"
                     Opacity="10"
@@ -58,7 +58,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Text="{x:Bind}"
-                                           FontSize="25" Grid.ColumnSpan="2" Margin="0,0,-1,0" Foreground="{StaticResource FontColor}"/>
+                                           FontSize="5" Grid.ColumnSpan="2" Margin="0,0,-1,0" Foreground="{StaticResource FontColor}"/>
 
                         </Grid>
                     </DataTemplate>

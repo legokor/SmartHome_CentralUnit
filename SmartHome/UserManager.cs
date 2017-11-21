@@ -16,8 +16,8 @@ namespace SmartHome
 
         public static bool Login(string pass, string email)
         {
-            var user = UserClass.GetUser(pass, email);
-            if (user != null)
+            var user = UserManager.GetUser(email);
+            if (user != null && user.EncodePassword(pass) == user.EncryptedPassword)
             {
                 IsLogined = true;
                 LoginedUser = user;
@@ -51,39 +51,30 @@ namespace SmartHome
                 }
             }
             return userclasses;
-        }    
+        }
+
+        public static UserClass GetUser(string email)
+        {
+            var user = DBInstance.FindUser(email);
+            if (user == null) return null;
+            return new UserClass(user);
+
+        }
 
         public static void CreateUser(string pass, string email)
         {
             var user = new UserClass();
             user.Email = email;
             user.Level = AccesLevel.Minimal;
-            user.Hash = GetSalt();
-            user.EncryptedPassword = EncodePassword(pass, user.Hash);
+            user.GetSalt();
+            user.EncryptedPassword = user.EncodePassword(pass);
             DBInstance.SaveUser(user);
             user.SendMail("You have registered with your "+email+" email address!", "Succesfully registration in the SmartHome system!");
         }
 
-        public static string GetSalt()
-        {
-            var rng = RandomNumberGenerator.Create();
-            var buff = new byte[32];
-            rng.GetBytes(buff);
-            return Convert.ToBase64String(buff);
 
-        }
 
-        public static string EncodePassword(string password, string salt)
-        {
-            byte[] bytes = Encoding.Unicode.GetBytes(password);
-            byte[] src = Encoding.Unicode.GetBytes(salt);
-            byte[] dst = new byte[src.Length + bytes.Length];
-            Buffer.BlockCopy(src, 0, dst, 0, src.Length);
-            Buffer.BlockCopy(bytes, 0, dst, src.Length, bytes.Length);
-            HashAlgorithm algorithm = SHA256.Create();
-            byte[] inarray = algorithm.ComputeHash(dst);
-            return Convert.ToBase64String(inarray);
-        }
+      
 
         public static void SetAccesLevel(string email, AccesLevel newLevel)
         {
@@ -103,7 +94,7 @@ namespace SmartHome
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             password = new string(Enumerable.Repeat(chars, 8)
                  .Select(s => s[random.Next(s.Length)]).ToArray());
-            var user = UserClass.GetUser(email);
+            var user = UserManager.GetUser(email);
             if (user == null) return false;
 
             if (await user.SendMail("Your temporary password is: " + password, "Forgotten password"))

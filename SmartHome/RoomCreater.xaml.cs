@@ -32,6 +32,7 @@ namespace SmartHome
         Button btn;
         public RoomCreater()
         {
+            if (Map.Stairs == 0) InitStairs();
             CreatedRoom = new Room(ActualRoomName);
             this.InitializeComponent();
             btn = new Button();
@@ -47,19 +48,26 @@ namespace SmartHome
             map.PointerMoved += Map_PointerMoved;
             foreach (var rooms in ViewManager.Rooms)
             {
-               
-                Button newbtn = new Button();
-                newbtn.Height = rooms.Height;
-                newbtn.Width = rooms.Width;
-                Canvas.SetLeft(newbtn, rooms.CanvasLeft);
-                Canvas.SetTop(newbtn, rooms.CanvasTop);
-                map.Children.Add(newbtn);
-                Grid.SetRow(newbtn, 1);
-                Grid.SetColumn(newbtn, 1);
-                newbtn.IsEnabled = false;
-                newbtn.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                newbtn.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Black);
+                if (rooms.OnLevel == Map.ActualStair)
+                {
+                    Button newbtn = new Button();
+                    newbtn.Height = rooms.Height;
+                    newbtn.Width = rooms.Width;
+                    Canvas.SetLeft(newbtn, rooms.CanvasLeft);
+                    Canvas.SetTop(newbtn, rooms.CanvasTop);
+                    map.Children.Add(newbtn);
+                    Grid.SetRow(newbtn, 1);
+                    Grid.SetColumn(newbtn, 1);
+                    newbtn.IsEnabled = false;
+                    newbtn.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    newbtn.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Black);
+                }
             }
+        }
+        private async void InitStairs()
+        {
+            HowManyLevelContentDialog dialog = new HowManyLevelContentDialog();
+            await dialog.ShowAsync();
         }
 
         public static async void LoadListFromFile()
@@ -74,7 +82,7 @@ namespace SmartHome
                 text = lines[i];
                 string[] chopped = text.Split('|');
                 if(chopped.Count() >= 6)
-                ViewManager.Rooms.Add(new Room(double.Parse(chopped[4]), double.Parse(chopped[3]), double.Parse(chopped[1]), double.Parse(chopped[2]), chopped[0], bool.Parse(chopped[5])));
+                ViewManager.Rooms.Add(new Room(double.Parse(chopped[4]), double.Parse(chopped[3]), double.Parse(chopped[1]), double.Parse(chopped[2]), chopped[0], bool.Parse(chopped[5]), int.Parse(chopped[6])));
             }
 
              
@@ -114,6 +122,7 @@ namespace SmartHome
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             CreatedRoom.GivePosition(btn.Width, btn.Height, Canvas.GetLeft(btn), Canvas.GetTop(btn));
+            CreatedRoom.OnLevel = Map.ActualStair;
             ViewManager.Rooms.Add(CreatedRoom);
             CreatedRoom.SaveRoomInToFile();
             foreach (var id in ViewManager.UnitsToLocalize)
@@ -163,6 +172,20 @@ namespace SmartHome
                 await Task.Delay(100);
             }
 
+        }
+
+        private void Up_Click(object sender, RoutedEventArgs e)
+        {
+            if (Map.ActualStair >= Map.Stairs) return;
+            Map.ActualStair++;
+            this.Frame.Navigate(typeof(RoomCreater));
+        }
+
+        private void Down_Click(object sender, RoutedEventArgs e)
+        {
+            if (Map.ActualStair <= 1) return;
+            Map.ActualStair--;
+            this.Frame.Navigate(typeof(RoomCreater));
         }
 
     }

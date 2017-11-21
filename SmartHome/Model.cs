@@ -14,7 +14,6 @@ namespace SmartHome
     class Model : DbContext
     {
         public DbSet<Sample> Samples { get; set; }
-        public DbSet<Admin> Admins { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -56,30 +55,17 @@ namespace SmartHome
         public int movement { get; set; }
     }
 
-    [Table("Admin")]
-    class Admin
-    {
-        [Key]
-        public int adminID { get; set; }
-        [Required]
-        public string email { get; set; }
-        public string password { get; set; }
-        public string hash { get; set; }
-
-      
-    }
-
     [Table("User")]
     class User
     {
-        [Key]
-        public int userID { get; set; }
-        [Required]
+        [Key]    
         public string email { get; set; }
+        [Required]
         public string password { get; set; }
+        [Required]
         public AccesLevel accesLevel { get; set; }
-        public string hash { get; set; }
-
+        [Required]
+        public string salt { get; set; }
     }
 
  }

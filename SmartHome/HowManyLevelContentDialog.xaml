@@ -1,0 +1,33 @@
+﻿<ContentDialog
+    x:Class="SmartHome.HowManyLevelContentDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SmartHome"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="How many stairs are in the house?"
+    Background="{StaticResource BackgroundBrush}"
+    Foreground="{StaticResource FontColor}"
+
+    SecondaryButtonText="Ok"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
+    x:Name="Dialog">
+    <ContentDialog.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+        </Style>
+    </ContentDialog.Resources>
+
+    <Grid>
+        <TextBlock Text="{Binding ElementName=Dialog, Path=Text, Mode=TwoWay}" Width="100" HorizontalAlignment="Right" />
+        <StackPanel  Orientation="Vertical" HorizontalAlignment="Left">
+            <Button x:Name="Up" Click="Up_Click" Background="Transparent">
+                <Image Source="{StaticResource AddRoomButton}" Width="100" Height="40" MinWidth="50" MinHeight="50"/>
+            </Button>
+            <Button x:Name="Down" Click="Down_Click" Background="Transparent">
+                <Image Source="{StaticResource DecreaseButton}" Width="100" Height="40" MinWidth="50" MinHeight="50"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</ContentDialog>

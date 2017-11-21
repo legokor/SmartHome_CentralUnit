@@ -15,23 +15,6 @@ namespace SmartHome.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");
 
-            modelBuilder.Entity("SmartHome.Admin", b =>
-                {
-                    b.Property<int>("adminID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("email")
-                        .IsRequired();
-
-                    b.Property<string>("hash");
-
-                    b.Property<string>("password");
-
-                    b.HasKey("adminID");
-
-                    b.ToTable("Admin");
-                });
-
             modelBuilder.Entity("SmartHome.Sample", b =>
                 {
                     b.Property<int>("samplingId")
@@ -63,19 +46,18 @@ namespace SmartHome.Migrations
 
             modelBuilder.Entity("SmartHome.User", b =>
                 {
-                    b.Property<int>("userID")
+                    b.Property<string>("email")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("accesLevel");
 
-                    b.Property<string>("email")
+                    b.Property<string>("password")
                         .IsRequired();
 
-                    b.Property<string>("hash");
+                    b.Property<string>("salt")
+                        .IsRequired();
 
-                    b.Property<string>("password");
-
-                    b.HasKey("userID");
+                    b.HasKey("email");
 
                     b.ToTable("User");
                 });

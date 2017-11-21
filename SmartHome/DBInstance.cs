@@ -12,7 +12,7 @@ namespace SmartHome
         {
             using (var context = new Model())
             {
-                var blog = new Sample
+                var sample = new Sample
                 {
                     senderId = Int32.Parse(data.Id),
                     movement = Int32.Parse(data.Movement),
@@ -21,8 +21,8 @@ namespace SmartHome
                     coLevel = double.Parse(data.Co),
                     smokeLevel = double.Parse(data.Smoke),
                     lpgLevel = double.Parse(data.Lpg)
-                 };
-                context.Samples.Add(blog);
+                 }; 
+                context.Samples.Add(sample);
                 context.SaveChanges();
             }
         }
@@ -31,11 +31,11 @@ namespace SmartHome
         {
             using (var context = new Model())
             {
-                var blogs = context.Samples
+                var samples = context.Samples
                     .Where(b => b.senderId.ToString() == (id))
                     .ToList();
 
-                return blogs;
+                return samples;
             }
         }
 
@@ -48,30 +48,11 @@ namespace SmartHome
                     email = user.Email,
                     password = user.EncryptedPassword,
                     accesLevel = user.Level,
-                    hash = user.Hash
+                    salt = user.Salt
                     
                 };
                 context.Users.Add(newUser);
                 context.SaveChanges();
-            }
-        }
-
-        public static User FindUser(string email, string pass)
-        {
-            using (var context = new Model())
-            {
-                var user = context.Users
-                    .Where(b => b.email == email)
-                    .ToList();
-                if (!user.Any()) return null;
-                if (UserManager.EncodePassword(pass, user.First().hash) == user.First().password)
-                {
-                    return user.First();
-                }
-                else
-                {
-                    return null;
-                }
             }
         }
 
@@ -105,7 +86,7 @@ namespace SmartHome
                     email = user.Email,
                     password = user.EncryptedPassword,
                     accesLevel = AccesLevel.Admin,
-                    hash = user.Hash
+                    salt = user.Salt
 
                 };
                 context.Users.Add(newUser);
@@ -113,24 +94,6 @@ namespace SmartHome
             }
         }
 
-        public static Admin FindAdmin(string email, string pass)
-        {
-            using (var context = new Model())
-            {
-                var user = context.Admins
-                    .Where(b => b.email == email)
-                    .ToList();
-                if (!user.Any()) return null;
-                if (UserManager.EncodePassword(pass, user.First().hash) == user.First().password)
-                {
-                    return user.First();
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
 
         public static void UpdateUser(UserClass user)
         {
@@ -141,7 +104,7 @@ namespace SmartHome
                     newUser.email = user.Email;
                     newUser.password = user.EncryptedPassword;
                     newUser.accesLevel = user.Level;
-                    newUser.hash = user.Hash;
+                    newUser.salt = user.Salt;
                 }
                 context.SaveChanges();
             }

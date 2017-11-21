@@ -119,6 +119,9 @@
     <Compile Include="Forgotten.xaml.cs">
       <DependentUpon>Forgotten.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HowManyLevelContentDialog.xaml.cs">
+      <DependentUpon>HowManyLevelContentDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Itemdatas.xaml.cs">
       <DependentUpon>Itemdatas.xaml</DependentUpon>
     </Compile>
@@ -140,9 +143,9 @@
     <Compile Include="Map.xaml.cs">
       <DependentUpon>Map.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20171026194712_MyFirstMigration.cs" />
-    <Compile Include="Migrations\20171026194712_MyFirstMigration.designer.cs">
-      <DependentUpon>20171026194712_MyFirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\20171120215601_FirstMigration.cs" />
+    <Compile Include="Migrations\20171120215601_FirstMigration.designer.cs">
+      <DependentUpon>20171120215601_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ModelModelSnapshot.cs" />
     <Compile Include="Model.cs" />
@@ -177,6 +180,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="ClassDiagram1.cd" />
     <None Include="SmartHome_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forgotten.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HowManyLevelContentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -4,25 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SmartHome.Migrations
 {
-    public partial class MyFirstMigration : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Admin",
-                columns: table => new
-                {
-                    adminID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    email = table.Column<string>(nullable: false),
-                    hash = table.Column<string>(nullable: true),
-                    password = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Admin", x => x.adminID);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Sample",
                 columns: table => new
@@ -47,24 +32,19 @@ namespace SmartHome.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    userID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    accesLevel = table.Column<int>(nullable: false),
                     email = table.Column<string>(nullable: false),
-                    hash = table.Column<string>(nullable: true),
-                    password = table.Column<string>(nullable: true)
+                    accesLevel = table.Column<int>(nullable: false),
+                    password = table.Column<string>(nullable: false),
+                    salt = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.userID);
+                    table.PrimaryKey("PK_User", x => x.email);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Admin");
-
             migrationBuilder.DropTable(
                 name: "Sample");
 

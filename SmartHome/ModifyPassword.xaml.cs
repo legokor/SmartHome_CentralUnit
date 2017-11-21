@@ -29,7 +29,7 @@ namespace SmartHome
 
         private async void Modify_Click(object sender, RoutedEventArgs e)
         {
-            if(PasswordBox.Password == RePasswordBox.Password  && UserManager.LoginedUser.EncryptedPassword == UserManager.EncodePassword(OldPassowordBox.Password, UserManager.LoginedUser.Hash))
+            if(PasswordBox.Password == RePasswordBox.Password  && UserManager.LoginedUser.EncryptedPassword == UserManager.LoginedUser.EncodePassword(OldPassowordBox.Password))
             {
                 UserManager.LoginedUser.ModifyPassword(PasswordBox.Password);
                 ContentDialogWithOK dialog = new ContentDialogWithOK

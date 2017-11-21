@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Windows.UI.ViewManagement;
 using Windows.Foundation;
 using Windows.Networking.Connectivity;
+using System.Runtime.InteropServices;
 
 namespace SmartHome
 {
@@ -32,12 +33,12 @@ namespace SmartHome
                 {
                     if (localHostName.Type == HostNameType.Ipv4)
                     {
-                       myIpAddress = localHostName;
+                        myIpAddress = localHostName;
                         break;
                     }
                 }
             }
-           
+
             try
             {
                 await Task.Factory.StartNew(async () =>
@@ -61,7 +62,7 @@ namespace SmartHome
             }
         }
 
-        public async void MessageReceived(DatagramSocket sender, DatagramSocketMessageReceivedEventArgs args)
+            public async void MessageReceived(DatagramSocket sender, DatagramSocketMessageReceivedEventArgs args)
         {
             await semaphore.WaitAsync();
             try

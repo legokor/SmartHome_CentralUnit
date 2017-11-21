@@ -10,22 +10,13 @@ namespace SmartHome
 {
     internal abstract class DataProcessor
     {
-        public static List<Unit> Units = new List<Unit>();
         public static int GivenId { get; set; } = 10000000;
 
-        public static ComboBox ComboBoxPtr { get; set; }
-
-        public static string Cmd { get; set; }
-
-        public static string CurrentSelected { get; set; } = "10000000";
-
-        public static bool ReceivePause { get; set; } = false;
-
         //Bejövő adatok szortírozása, a Process hívja meg
-        public async static void SortString(string[] data)
+        private async static Task<string> SortString(string[] data)
         {
-            Cmd = data[0];
-            if (Cmd == "SND")
+            string cmd = data[0];
+            if (cmd == "SND")
             {
                 DataElement newel = new DataElement
                 {
@@ -37,9 +28,13 @@ namespace SmartHome
                     Lpg = data[2],
                     Smoke = data[4]
                 };
-                DataProcessor.LoadList(newel);             //Beöltés a a dataelement listába
+                await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    AutoLightControl(newel);
+                    ViewManager.AddToActualDatas(newel);
+                });
             }
-            if( Cmd == "JND")
+            if( cmd == "JND")
             {
                
                 Unit newUnit = new Unit
@@ -47,14 +42,13 @@ namespace SmartHome
                     Id = data[1],
                     Type = data[2]
                 };
-                Units.Add(newUnit);
                 await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
                     ViewManager.AddToNodeList(newUnit);
                 });
             }
 
-            if (Cmd == "REQIP")
+            if (cmd == "REQIP")
             {
 
                 Unit newUnit = new Unit
@@ -63,14 +57,13 @@ namespace SmartHome
                 };
                 newUnit.Id = GivenId.ToString();
                 GivenId += 10000000;
-                Units.Add(newUnit);
                 await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
                     ViewManager.AddToNodeList(newUnit);
                 });
             }
 
-            if (Cmd == "BTN")
+            if (cmd == "SEL")
             {              
                 await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
@@ -81,38 +74,24 @@ namespace SmartHome
                 });
 
             }
-
-        }
-
-        //Listába felvenni az új elemet
-        public static async void LoadList(DataElement newdata)
-        {
-           // DBInstance.SaveData(newdata);
-          //  var dbList = DBInstance.LoadData(newdata.Id);
-
-            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                AutoLightControl(newdata);
-                ViewManager.AddToActualDatas(newdata);
-            });
-
+            return cmd;
         }
 
         public static void AutoLightControl(DataElement newdata)
         {
             var unit = ViewManager.CurrentNodes.Where(u => u.Id == newdata.Id).FirstOrDefault();
-            if (unit.Type == "PIR")
+            if ( unit != null && unit.Type == "PIR")
             {
                 Room room = ViewManager.Rooms.Where(r => r.Name == unit.Location).FirstOrDefault();
                 if (room.Auto)
                 {
                     if (newdata.Movement == "1")
                     {
-                        room.TurnLightOn();
+                        room.TurnLightOn(true);
                     }
                     else
                     {
-                        room.TurnLightOff();
+                        room.TurnLightOff(true);
                     }
                 }
             }
@@ -120,18 +99,18 @@ namespace SmartHome
 
 
         //Üzenet elkapásakor hívódik meg, elvégzi a bejövő adatok feldolgozásást
-        public static void Process(string indata)
+        public async static void Process(string indata)
         {
             string[] chopped = indata.Split('|');                           //Az üzenet szédarabolása
-            DataProcessor.SortString(chopped);                                      //Az adatok tagváltozókba szortírozása       
-            if (Cmd == "REQIP")                                               //Ha ip kérés van
+            string cmd = await DataProcessor.SortString(chopped);                                      //Az adatok tagváltozókba szortírozása       
+            if (cmd == "REQIP")                                               //Ha ip kérés van
             {
                 string currmsg = ("SVD|" + DataProcessor.GivenId.ToString() + "|" + "192.168.43.182" + "|\0");         //Ip kiküldése 
                 UdpServer.SendMessage(currmsg, 1080);                                                      
             }
             else
             {
-                UdpServer.SendMessage("ACK\0", 1080);
+                UdpServer.SendMessage("ACK|\0", 1080);
             }
 
         }

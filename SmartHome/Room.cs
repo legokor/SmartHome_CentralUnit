@@ -11,6 +11,8 @@ namespace SmartHome
         public string Name { get; set; }
         public bool Auto { get; set; } = true;
 
+        public int OnLevel { get; set; }
+
         public double Width { get; set; }
         public double Height { get; set; }
         public double CanvasLeft { get; set; }
@@ -29,7 +31,7 @@ namespace SmartHome
         {
             Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             Windows.Storage.StorageFile roomFile = await storageFolder.CreateFileAsync("Rooms.txt", openType);
-            await Windows.Storage.FileIO.AppendTextAsync(roomFile, Name + "|" + CanvasLeft.ToString() + "|" + CanvasTop.ToString() + "|" + Height.ToString() + "|" + Width.ToString() + "|" + Auto.ToString() + "|\n");                    
+            await Windows.Storage.FileIO.AppendTextAsync(roomFile, Name + "|" + CanvasLeft.ToString() + "|" + CanvasTop.ToString() + "|" + Height.ToString() + "|" + Width.ToString() + "|" + Auto.ToString() +  OnLevel.ToString() +"|\n");                    
             return;
         }
 
@@ -38,7 +40,7 @@ namespace SmartHome
             Name = name;
         }
 
-        public Room(double width, double height, double canvasLeft, double canvasTop, string name, bool auto)
+        public Room(double width, double height, double canvasLeft, double canvasTop, string name, bool auto, int onLevel)
         {
             Name = name;
             Width = width;
@@ -46,6 +48,7 @@ namespace SmartHome
             CanvasLeft = canvasLeft;
             CanvasTop = canvasTop;
             Auto = auto;
+            OnLevel = onLevel;
         }
 
         public IEnumerable<Unit> GetUnits()
@@ -146,18 +149,18 @@ namespace SmartHome
             Name = newName;
         }
 
-        public void TurnLightOn()
+        public void TurnLightOn(bool autoSwitch)
         {
-            foreach (var unit in GetUnits().Where(u => u.Type == "Switcher"))
+            foreach (var unit in GetUnits().Where(u => u.Type == "Switcher" && u.Auto == autoSwitch))
             {
                 string message = "CMD|" + unit.Id + "|1|\0";
                 UdpServer.SendMessage(message, 1080);                
             }
             this.Light = "ON";
         }
-        public void TurnLightOff()
+        public void TurnLightOff(bool autoSwitch)
         {
-            foreach (var unit in GetUnits().Where(u => u.Type == "Switcher"))
+            foreach (var unit in GetUnits().Where(u => u.Type == "Switcher" && u.Auto == autoSwitch))
             {
                 string message = "CMD|" + unit.Id + "|0|\0";
                 UdpServer.SendMessage(message, 1080);               

@@ -34,7 +34,8 @@ namespace SmartHome
             {
                 if (o.Value is DataElement)
                 {
-                    temp += Double.Parse((o.Value as DataElement).Temperature);
+                    var number = Double.Parse((o.Value as DataElement).Temperature == "nan"? "0": (o.Value as DataElement).Temperature);
+                    temp += number is Double ? number : 0.0;
                     count++;
                 }
             }
@@ -74,12 +75,12 @@ namespace SmartHome
                 StartServer();
                 RoomCreater.LoadListFromFile();
 
-                /*   var user = new UserClass();
-                   user.Email = "admin";
-                   user.Hash = UserManager.GetSalt();
-                   user.EncryptedPassword = UserManager.EncodePassword("admin", user.Hash);
-                   user.Level = AccesLevel.Admin;
-                   DBInstance.SaveUser(user);*/
+                /* var user = new UserClass();
+                  user.Email = "Admin";
+                  user.GetSalt();
+                  user.EncryptedPassword = user.EncodePassword("admin");
+                  user.Level = AccesLevel.Admin;
+                  DBInstance.SaveUser(user);*/
             }
             this.InitializeComponent();
             DataContext = this;
@@ -158,6 +159,11 @@ namespace SmartHome
             ViewManager.ResreshSenderDataEvent -= RefreshAvgTemp;
             StopClock();
             this.Frame.Navigate(typeof(MainSettings));
+        }
+
+        private void Open_SelectUnit(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private async void Open_Control(object sender, RoutedEventArgs e)

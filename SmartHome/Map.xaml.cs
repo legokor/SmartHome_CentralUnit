@@ -26,6 +26,9 @@ namespace SmartHome
         private bool isDelete = false;
         private List<Button> buttons = new List<Button>();
         private RoutedEventHandler function;
+        static public int ActualStair { get; set; } = 1;
+        static public int Stairs { get; set; } = 0;
+        private string mode;
         public Map()
         {
             DataContext = this;
@@ -37,28 +40,31 @@ namespace SmartHome
         {
             foreach (var rooms in ViewManager.Rooms)
             {
-
-                Button newbtn = new Button();
-                buttons.Add(newbtn);
-                newbtn.Height = rooms.Height;
-                newbtn.Width = rooms.Width;
-                Canvas.SetLeft(newbtn, rooms.CanvasLeft);
-                Canvas.SetTop(newbtn, rooms.CanvasTop);
-                map.Children.Add(newbtn);
-                Grid.SetRow(newbtn, 1);
-                Grid.SetColumn(newbtn, 1);
-                newbtn.IsEnabled = true;
-                newbtn.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                newbtn.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Black);
-                newbtn.Content = rooms.Name;
-                newbtn.Click += function;
+                if (rooms.OnLevel == ActualStair)
+                {
+                    Button newbtn = new Button();
+                    buttons.Add(newbtn);
+                    newbtn.Height = rooms.Height;
+                    newbtn.Width = rooms.Width;
+                    Canvas.SetLeft(newbtn, rooms.CanvasLeft);
+                    Canvas.SetTop(newbtn, rooms.CanvasTop);
+                    map.Children.Add(newbtn);
+                    Grid.SetRow(newbtn, 1);
+                    Grid.SetColumn(newbtn, 1);
+                    newbtn.IsEnabled = true;
+                    newbtn.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    newbtn.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Black);
+                    newbtn.Content = rooms.Name;
+                    newbtn.Click += function;
+                    newbtn.FontSize = 10;
+                }
             }
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
            
-            string text = e.Parameter as string;
-           switch(text)
+             mode = e.Parameter as string;
+           switch(mode)
             {
                 case "Selecting": function = OpenRoom; break;
                 case "Localizing": function = AddUnitsToRoom; break;
@@ -66,7 +72,7 @@ namespace SmartHome
                 default: break;
             }
             InitMap();
-            if(text == "Switch")
+            if(mode == "Switch")
             {
                 TurnLightsMode();
             }
@@ -128,7 +134,7 @@ namespace SmartHome
                 {
                     room.SetAuto(false);
                     button.Background = Application.Current.Resources["LightON"] as SolidColorBrush;
-                    room.TurnLightOn();
+                    room.TurnLightOn(false);
                 }
                 else
                 {
@@ -140,7 +146,7 @@ namespace SmartHome
                     else
                     {
                         button.Background = Application.Current.Resources["LightOFF"] as SolidColorBrush;
-                        room.TurnLightOff();
+                        room.TurnLightOff(false);
                     }
                 }
             }
@@ -179,6 +185,20 @@ namespace SmartHome
         private void IsDelete_Toggled(object sender, RoutedEventArgs e)
         {
             isDelete = IsDelete.IsOn;
+        }
+
+        private void Up_Click(object sender, RoutedEventArgs e)
+        {
+            if (ActualStair >= Stairs) return;
+            ActualStair++;
+            this.Frame.Navigate(typeof(Map), mode);
+        }
+
+        private void Down_Click(object sender, RoutedEventArgs e)
+        {
+            if (ActualStair <= 1) return;
+            ActualStair--;
+            this.Frame.Navigate(typeof(Map), mode);
         }
     }
 }
