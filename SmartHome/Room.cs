@@ -31,7 +31,7 @@ namespace SmartHome
         {
             Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             Windows.Storage.StorageFile roomFile = await storageFolder.CreateFileAsync("Rooms.txt", openType);
-            await Windows.Storage.FileIO.AppendTextAsync(roomFile, Name + "|" + CanvasLeft.ToString() + "|" + CanvasTop.ToString() + "|" + Height.ToString() + "|" + Width.ToString() + "|" + Auto.ToString() +  OnLevel.ToString() +"|\n");                    
+            await Windows.Storage.FileIO.AppendTextAsync(roomFile, Name + "|" + CanvasLeft.ToString() + "|" + CanvasTop.ToString() + "|" + Height.ToString() + "|" + Width.ToString() + "|" + Auto.ToString() +"|"+  OnLevel.ToString() +"|\n");                    
             return;
         }
 

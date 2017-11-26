@@ -22,20 +22,20 @@ namespace SmartHome
     /// </summary>
     /// 
     
-    public sealed partial class ItemDatas : Page
+    public sealed partial class UnitDatas : Page
     {
         public static readonly DependencyProperty TemperatureDependencyProperty =
-            DependencyProperty.Register("Temperature", typeof(string), typeof(ItemDatas), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Temperature", typeof(string), typeof(UnitDatas), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty HumidityDependencyProperty =
-            DependencyProperty.Register("Humidity", typeof(string), typeof(ItemDatas), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Humidity", typeof(string), typeof(UnitDatas), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty MovementDependencyProperty =
-            DependencyProperty.Register("Movement", typeof(string), typeof(ItemDatas), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Movement", typeof(string), typeof(UnitDatas), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty CoDependencyProperty =
-            DependencyProperty.Register("Co", typeof(string), typeof(ItemDatas), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Co", typeof(string), typeof(UnitDatas), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty LpgDependencyProperty =
-            DependencyProperty.Register("Lpg", typeof(string), typeof(ItemDatas), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Lpg", typeof(string), typeof(UnitDatas), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty SmokeDependencyProperty =
-            DependencyProperty.Register("Smoke", typeof(string), typeof(ItemDatas), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Smoke", typeof(string), typeof(UnitDatas), new PropertyMetadata(string.Empty));
         public static string ChosenUnit { get; set; }
 
         public string Temperature
@@ -85,7 +85,7 @@ namespace SmartHome
             }
             
         }
-        public ItemDatas()
+        public UnitDatas()
         {
             this.InitializeComponent();
             DataContext = this;

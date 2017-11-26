@@ -87,8 +87,8 @@ namespace SmartHome
         private void TBSelect_Click(object sender, RoutedEventArgs e)
         {
             ViewManager.ResreshSenderDataEvent -= RefreshTemp;
-            ItemDatas.ChosenUnit = Nodes.SelectedItem.ToString();
-            this.Frame.Navigate(typeof(ItemDatas));
+            UnitDatas.ChosenUnit = Nodes.SelectedItem.ToString();
+            this.Frame.Navigate(typeof(UnitDatas));
         }
        
         private void Setting_Click(object sender, RoutedEventArgs e)

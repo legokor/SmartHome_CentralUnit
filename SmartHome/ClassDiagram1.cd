@@ -13,7 +13,6 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAQAAIAAA=</HashCode>
       <FileName>App.xaml.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="SmartHome.Config" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="2.25" Y="0.5" Width="1.5" />
@@ -74,14 +73,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAQAAAAAAAACAQAAAAAAAAAAAAEAAACCAAAAA=</HashCode>
       <FileName>HowManyLevelContentDialog.xaml.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="SmartHome.ItemDatas" BaseTypeListCollapsed="true">
-    <Position X="13.25" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>EAAAAACAAAAABAEAFAACAAAABC0AAAAAAAAAAAQEBAA=</HashCode>
-      <FileName>Itemdatas.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
