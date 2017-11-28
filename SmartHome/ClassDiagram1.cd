@@ -134,7 +134,7 @@
   <Class Name="SmartHome.Model">
     <Position X="4" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAAQAAAAAAAAAAAAAAEAAAAAAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAACAAAQAAABAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -210,14 +210,14 @@
   <Class Name="SmartHome.ThemeManager" Collapsed="true">
     <Position X="9.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACCAAAAgAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAQACAAAQAgAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>ThemeManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SmartHome.UdpServer" Collapsed="true">
     <Position X="11" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAQAAAAAAAACAAQAAAAAAAAABAAAAAAAEAAAA=</HashCode>
+      <HashCode>IAAAAAAAQAAAAAAAACAAQAAAAAAAAABAAAAAAAFAAAA=</HashCode>
       <FileName>UdpServer.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -296,7 +296,7 @@
     <Position X="9.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20171120215601_FirstMigration.cs</FileName>
+      <FileName>Migrations\20171128230440_FirstMigration.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SmartHome.Migrations.ModelModelSnapshot" Collapsed="true">

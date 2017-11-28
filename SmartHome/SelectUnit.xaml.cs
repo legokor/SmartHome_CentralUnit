@@ -69,6 +69,14 @@ namespace SmartHome
                 Temp += double.Parse(element.Temperature);
             }
             if (i != 0) Temp = Temp / i;
+            if (Temp < 10)
+            {
+                TemperatureBox.Text = String.Format("{0:0.00}", Temp) + "°C";
+            }
+            else
+            {
+                TemperatureBox.Text = String.Format("{0:00.00}", Temp) + "°C";
+            }
         }
 
 

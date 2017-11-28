@@ -89,13 +89,8 @@
             Grid.Column="0"
             Grid.Row="1"
             Margin="5">
-            <StackPanel Orientation="Horizontal">
-            <TextBlock 
-                     FontWeight="Bold" Text="{Binding Temp}" Style="{StaticResource TextBlockStyle}"/>
-                <TextBlock 
-                    FontWeight="Bold" Text="°C" Style="{StaticResource TextBlockStyle}"/>
-            </StackPanel>
-
+            <TextBlock x:Name="TemperatureBox"
+                     FontWeight="Bold"  Style="{StaticResource TextBlockStyle}"/>
         </Border>
         <Border Name="BDSelect"
             Grid.Column="2"

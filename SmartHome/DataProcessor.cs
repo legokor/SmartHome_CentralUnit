@@ -33,6 +33,7 @@ namespace SmartHome
                     AutoLightControl(newel);
                     ViewManager.AddToActualDatas(newel);
                 });
+                DBInstance.SaveData(newel);
             }
             if( cmd == "JND")
             {

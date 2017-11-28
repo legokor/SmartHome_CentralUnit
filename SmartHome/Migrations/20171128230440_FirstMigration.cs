@@ -9,23 +9,22 @@ namespace SmartHome.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Sample",
+                name: "DataSample",
                 columns: table => new
                 {
-                    samplingId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    coLevel = table.Column<double>(nullable: false),
-                    humidity = table.Column<double>(nullable: false),
-                    lpgLevel = table.Column<double>(nullable: false),
-                    movement = table.Column<int>(nullable: false),
-                    senderId = table.Column<int>(nullable: false),
-                    smokeLevel = table.Column<double>(nullable: false),
-                    temperature = table.Column<double>(nullable: false),
-                    time = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                    SamplingId = table.Column<Guid>(nullable: false),
+                    CoLevel = table.Column<double>(nullable: false),
+                    Humidity = table.Column<double>(nullable: false),
+                    LpgLevel = table.Column<double>(nullable: false),
+                    Movement = table.Column<int>(nullable: false),
+                    SenderId = table.Column<int>(nullable: false),
+                    SmokeLevel = table.Column<double>(nullable: false),
+                    Temperature = table.Column<double>(nullable: false),
+                    TimeStamp = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sample", x => x.samplingId);
+                    table.PrimaryKey("PK_DataSample", x => x.SamplingId);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,7 +45,7 @@ namespace SmartHome.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Sample");
+                name: "DataSample");
 
             migrationBuilder.DropTable(
                 name: "User");

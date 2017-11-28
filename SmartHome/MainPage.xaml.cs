@@ -28,13 +28,13 @@ namespace SmartHome
 
         public void RefreshAvgTemp(string useless)
         {
-            double temp = 0;
+            double temp = 0.0;
             int count = 0;
             foreach (var o in ViewManager.ActualDatas)
             {
                 if (o.Value is DataElement)
                 {
-                    var number = Double.Parse((o.Value as DataElement).Temperature == "nan"? "0": (o.Value as DataElement).Temperature);
+                    var number = Double.Parse((o.Value as DataElement).Temperature == "nan"? "0.00": (o.Value as DataElement).Temperature);
                     temp += number is Double ? number : 0.0;
                     count++;
                 }
@@ -43,7 +43,14 @@ namespace SmartHome
             {
                 temp = temp / count;
             }
-            AvgTemp = temp.ToString()+"°C";
+            if (temp < 10)
+            {
+                AvgTemp = String.Format("{0:0.00}", temp) + "°C";
+            }
+            else
+            {
+                AvgTemp = String.Format("{0:00.00}", temp) + "°C";
+            }
         }
 
         private readonly DispatcherTimer _clockTimer = new DispatcherTimer();
@@ -71,7 +78,7 @@ namespace SmartHome
         {
             if (UdpServer.IsRunning == false)
             {
-                ThemeManager.SetNormalTheme();
+                ThemeManager.Init();
                 StartServer();
                 RoomCreater.LoadListFromFile();
 
@@ -81,6 +88,19 @@ namespace SmartHome
                   user.EncryptedPassword = user.EncodePassword("admin");
                   user.Level = AccesLevel.Admin;
                   DBInstance.SaveUser(user);*/
+
+
+                DataElement newel = new DataElement
+                {
+                    Id = "211111111",
+                    Temperature = "25",
+                    Humidity = "25",
+                    Movement = "1",
+                    Co = "25",
+                    Lpg = "25",
+                    Smoke = "25"
+                };              
+                DBInstance.SaveData(newel);
             }
             this.InitializeComponent();
             DataContext = this;

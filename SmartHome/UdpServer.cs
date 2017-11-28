@@ -17,6 +17,9 @@ using Windows.UI.ViewManagement;
 using Windows.Foundation;
 using Windows.Networking.Connectivity;
 using System.Runtime.InteropServices;
+using System.Net.Http.Headers;
+using System.Net.Http;
+using System.Runtime.Serialization.Json;
 
 namespace SmartHome
 {
@@ -108,5 +111,36 @@ namespace SmartHome
                 semaphore.Release();
             }
         }
+
+        public async static void UploadToServer(DataSample element)
+        {
+            var httpClient = new System.Net.Http.HttpClient();
+            try
+            {
+                string resourceAddress = "http://localhost:4848/WCFService.svc/GetData";
+
+                var result = Newtonsoft.Json.JsonConvert.SerializeObject(element);
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                System.Net.Http.HttpResponseMessage wcfResponse = await httpClient.PostAsync(resourceAddress, new StringContent(result, Encoding.UTF8, "application/json"));
+            }
+            catch (HttpRequestException)
+            {
+            }
+            catch (TaskCanceledException)
+            {
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                if (httpClient != null)
+                {
+                    httpClient.Dispose();
+                    httpClient = null;
+                }
+            }
+        }
+
     }
 }

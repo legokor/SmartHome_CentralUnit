@@ -12,27 +12,28 @@ namespace SmartHome
         {
             using (var context = new Model())
             {
-                var sample = new Sample
+                var sample = new DataSample
                 {
-                    senderId = Int32.Parse(data.Id),
-                    movement = Int32.Parse(data.Movement),
-                    temperature = double.Parse(data.Temperature),
-                    humidity = double.Parse(data.Humidity),
-                    coLevel = double.Parse(data.Co),
-                    smokeLevel = double.Parse(data.Smoke),
-                    lpgLevel = double.Parse(data.Lpg)
-                 }; 
-                context.Samples.Add(sample);
+                    SenderId = Int32.Parse(data.Id),
+                    Movement = Int32.Parse(data.Movement),
+                    Temperature = double.Parse(data.Temperature),
+                    Humidity = double.Parse(data.Humidity),
+                    CoLevel = double.Parse(data.Co),
+                    SmokeLevel = double.Parse(data.Smoke),
+                    LpgLevel = double.Parse(data.Lpg)
+                 };
+                UdpServer.UploadToServer(sample);
+                context.DataSamples.Add(sample);
                 context.SaveChanges();
             }
         }
 
-        public static List<Sample> LoadData(string id)
+        public static List<DataSample> LoadData(string id)
         {
             using (var context = new Model())
             {
-                var samples = context.Samples
-                    .Where(b => b.senderId.ToString() == (id))
+                var samples = context.DataSamples
+                    .Where(b => b.SenderId.ToString() == (id))
                     .ToList();
 
                 return samples;

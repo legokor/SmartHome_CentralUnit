@@ -140,9 +140,9 @@
     <Compile Include="Map.xaml.cs">
       <DependentUpon>Map.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20171120215601_FirstMigration.cs" />
-    <Compile Include="Migrations\20171120215601_FirstMigration.designer.cs">
-      <DependentUpon>20171120215601_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\20171128230440_FirstMigration.cs" />
+    <Compile Include="Migrations\20171128230440_FirstMigration.designer.cs">
+      <DependentUpon>20171128230440_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ModelModelSnapshot.cs" />
     <Compile Include="Model.cs" />
@@ -331,6 +331,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>5.2.2</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>10.0.3</Version>
     </PackageReference>
     <PackageReference Include="WinRTXamlToolkit.Controls.DataVisualization.UWP">
       <Version>2.3.0</Version>

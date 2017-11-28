@@ -29,10 +29,8 @@ namespace SmartHome
         {
             DataContext = this;
             this.InitializeComponent();
-            if(theme == "NightTheme")
-            {
-                IsNightMode.IsOn = true;
-            }
+            ThemeSelector.ItemsSource = ThemeManager.Themes.Keys;
+            ThemeSelector.SelectedValue = ThemeManager.CurrentTheme;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -75,15 +73,8 @@ namespace SmartHome
 
         private void IsThemeChanged_Changed(object sender, RoutedEventArgs e)
         {
-            var toggle = sender as ToggleSwitch;
-            if(toggle.IsOn)
-            {
-                ThemeManager.SetNightTheme();
-            }
-            else
-            {
-                ThemeManager.SetNormalTheme();
-            }           
+            var combobox = sender as ComboBox;
+                ThemeManager.SetTheme(combobox.SelectedValue.ToString());          
         }
     }
 }

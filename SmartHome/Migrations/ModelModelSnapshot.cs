@@ -15,33 +15,33 @@ namespace SmartHome.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");
 
-            modelBuilder.Entity("SmartHome.Sample", b =>
+            modelBuilder.Entity("SmartHome.DataSample", b =>
                 {
-                    b.Property<int>("samplingId")
+                    b.Property<Guid>("SamplingId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<double>("coLevel");
+                    b.Property<double>("CoLevel");
 
-                    b.Property<double>("humidity");
+                    b.Property<double>("Humidity");
 
-                    b.Property<double>("lpgLevel");
+                    b.Property<double>("LpgLevel");
 
-                    b.Property<int>("movement");
+                    b.Property<int>("Movement");
 
-                    b.Property<int>("senderId");
+                    b.Property<int>("SenderId");
 
-                    b.Property<double>("smokeLevel");
+                    b.Property<double>("SmokeLevel");
 
-                    b.Property<double>("temperature");
+                    b.Property<double>("Temperature");
 
-                    b.Property<DateTime>("time")
+                    b.Property<DateTime>("TimeStamp")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasAnnotation("Sqlite:DefaultValueSql", "CURRENT_TIMESTAMP");
 
-                    b.HasKey("samplingId");
+                    b.HasKey("SamplingId");
 
-                    b.ToTable("Sample");
+                    b.ToTable("DataSample");
                 });
 
             modelBuilder.Entity("SmartHome.User", b =>

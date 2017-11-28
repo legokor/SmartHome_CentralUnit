@@ -11,45 +11,28 @@ namespace SmartHome
     {
         public static string CurrentTheme { get { return currentTheme; } }
         private static string currentTheme;
+        public static Dictionary<string, ResourceDictionary> Themes { get; } = new Dictionary<string, ResourceDictionary>(); 
 
-        public static void SetNightTheme()
+
+        public static void Init()
         {
-            if (currentTheme != "NightTheme")
-            {
-
-
-                ResourceDictionary delResourceDictionary = new ResourceDictionary();
-                delResourceDictionary.Source = new Uri("ms-appx:///NormalTheme.xaml");
-                if (Application.Current.Resources.MergedDictionaries.Contains(delResourceDictionary))
-                {
-                    Application.Current.Resources.MergedDictionaries.Remove(delResourceDictionary);
-                }
-                ResourceDictionary myResourceDictionary = new ResourceDictionary();
-                myResourceDictionary.Source = new Uri("ms-appx:///NightTheme.xaml");
-                Application.Current.Resources.MergedDictionaries.Add(myResourceDictionary);
-                currentTheme = "NightTheme";
-            }
+            ResourceDictionary normalResourceDictionary = new ResourceDictionary();
+            normalResourceDictionary.Source = new Uri("ms-appx:///NormalTheme.xaml");
+            Themes.Add("Normal theme", normalResourceDictionary);
+            ResourceDictionary nightResourceDictionary = new ResourceDictionary();
+            nightResourceDictionary.Source = new Uri("ms-appx:///NightTheme.xaml");
+            Themes.Add("Night theme", nightResourceDictionary);
+            Application.Current.Resources.MergedDictionaries.Add(Themes["Normal theme"]);
+            currentTheme = "Normal theme";
         }
-
-        public static void SetNormalTheme()
+        public static void SetTheme(string themeKey)
         {
-            if (currentTheme != "NormalTheme")
+            if (Application.Current.Resources.MergedDictionaries.Contains(Themes[currentTheme]))
             {
-                ResourceDictionary delResourceDictionary = new ResourceDictionary();
-                delResourceDictionary.Source = new Uri("ms-appx:///NightTheme.xaml");
-                if (Application.Current.Resources.MergedDictionaries.Contains(delResourceDictionary))
-                {
-                    Application.Current.Resources.MergedDictionaries.Remove(delResourceDictionary);
-                }
-                ResourceDictionary myResourceDictionary = new ResourceDictionary();
-                myResourceDictionary.Source = new Uri("ms-appx:///NormalTheme.xaml");
-                Application.Current.Resources.MergedDictionaries.Add(myResourceDictionary);
-                currentTheme = "NormalTheme";
+                Application.Current.Resources.MergedDictionaries.Remove(Themes[currentTheme]);
             }
-
+            Application.Current.Resources.MergedDictionaries.Add(Themes[themeKey]);
+            currentTheme = themeKey;
         }
-
-
-
     }
 }

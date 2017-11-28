@@ -13,18 +13,18 @@ namespace SmartHome
 {
     class Model : DbContext
     {
-        public DbSet<Sample> Samples { get; set; }
+        public DbSet<DataSample> DataSamples { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Sample>()
-                 .Property(b => b.time)
+            modelBuilder.Entity<DataSample>()
+                 .Property(b => b.TimeStamp)
                  .ValueGeneratedOnAddOrUpdate()
                  .IsConcurrencyToken()
                  .ForSqliteHasDefaultValueSql("CURRENT_TIMESTAMP");
-            modelBuilder.Entity<Sample>()
-                 .Property(p => p.samplingId)
+            modelBuilder.Entity<DataSample>()
+                 .Property(p => p.SamplingId)
                  .IsRequired();
 
 
@@ -36,23 +36,22 @@ namespace SmartHome
             optionsBuilder.UseSqlite("Filename=database.db");
         }
     }
-    
 
-    [Table("Sample")]
-    class Sample
+    [Table("DataSample")]
+    class DataSample
     {
         [Key]
-        public int samplingId { get; set; }
+        public Guid SamplingId { get; set; }
         [Required]
-        public int senderId { get; set; }
-        public double temperature { get; set; }
-        public double humidity { get; set; }
-        public double coLevel { get; set; }
-        public double smokeLevel { get; set; }
-        public double lpgLevel { get; set; }
-        public DateTime time { get; set; }
+        public int SenderId { get; set; }
+        public double Temperature { get; set; }
+        public double Humidity { get; set; }
+        public double CoLevel { get; set; }
+        public double SmokeLevel { get; set; }
+        public double LpgLevel { get; set; }
+        public DateTime TimeStamp { get; set; }
 
-        public int movement { get; set; }
+        public int Movement { get; set; }
     }
 
     [Table("User")]
