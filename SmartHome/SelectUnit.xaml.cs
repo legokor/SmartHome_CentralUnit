@@ -57,17 +57,17 @@ namespace SmartHome
             }
             Temp = 0;
             Nodes.ItemsSource = ids;
-            ViewManager.ResreshSenderDataEvent += RefreshTemp;
-            RefreshTemp("Init");
+            Collections.ResreshSenderDataEvent += RefreshTemp;
+            RefreshTemp("init");
         }
 
         public void RefreshTemp(string newSenderId)
         {
             int i = 0;
-            foreach(var element in chosenPlace.GetDataElements())
+            foreach(var element in chosenPlace.GetDataSamples())
             {
                 i++;
-                Temp += double.Parse(element.Temperature);
+                Temp += element.Temperature;
             }
             if (i != 0) Temp = Temp / i;
             if (Temp < 10)
@@ -83,7 +83,7 @@ namespace SmartHome
 
         private void Open_HomePage(object sender, RoutedEventArgs e)
         {
-            ViewManager.ResreshSenderDataEvent -= RefreshTemp;
+            Collections.ResreshSenderDataEvent -= RefreshTemp;
             this.Frame.Navigate(typeof(MainPage));
         }
 
@@ -95,22 +95,22 @@ namespace SmartHome
 
         private void TBSelect_Click(object sender, RoutedEventArgs e)
         {
-            ViewManager.ResreshSenderDataEvent -= RefreshTemp;
+            Collections.ResreshSenderDataEvent -= RefreshTemp;
             UnitDatas.ChosenUnit = Nodes.SelectedItem.ToString();
             this.Frame.Navigate(typeof(UnitDatas));
         }
        
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
-            ViewManager.ResreshSenderDataEvent -= RefreshTemp;
+            Collections.ResreshSenderDataEvent -= RefreshTemp;
             this.Frame.Navigate(typeof(RoomSettings), chosenPlace);
         }
 
         private void Bt_Delete(object sender, RoutedEventArgs e)
         {
-            ViewManager.ResreshSenderDataEvent -= RefreshTemp;
-            ViewManager.UnitsToLocalize.Add(Nodes.SelectedItem as string);
-            chosenPlace.RemoveUnit(Nodes.SelectedItem as string);
+            Collections.ResreshSenderDataEvent -= RefreshTemp;
+            Collections.UnitsToLocalize.Add(Nodes.SelectedItem.ToString());
+            chosenPlace.RemoveUnit(Nodes.SelectedItem.ToString());
             this.Frame.Navigate(typeof(SelectUnit), chosenPlace);
         }
     }

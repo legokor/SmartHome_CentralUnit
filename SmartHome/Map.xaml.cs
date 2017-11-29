@@ -38,7 +38,7 @@ namespace SmartHome
 
         private void InitMap()
         {
-            foreach (var rooms in ViewManager.Rooms)
+            foreach (var rooms in Collections.Rooms)
             {
                 if (rooms.OnLevel == ActualStair)
                 {
@@ -79,7 +79,7 @@ namespace SmartHome
         }
         private void OpenRoom(object sender, RoutedEventArgs e)
         {
-            var room = ViewManager.Rooms.Where(s => s.Name == (sender as Button).Content).First();
+            var room = Collections.Rooms.Where(s => s.Name == (sender as Button).Content).First();
             if (isDelete)
             {
                 (sender as Button).Visibility = Visibility.Collapsed;                          
@@ -87,7 +87,7 @@ namespace SmartHome
                 foreach (var node in room.GetUnits())
                 {                  
                         node.Location = "";
-                        ViewManager.UnitsToLocalize.Add(node.Id); 
+                        Collections.UnitsToLocalize.Add(node.Id); 
                 }              
             }
             else
@@ -100,7 +100,7 @@ namespace SmartHome
         {
             foreach(var button in buttons)
             {
-                var room = ViewManager.Rooms.Where(s => s.Name == button.Content as string).FirstOrDefault();
+                var room = Collections.Rooms.Where(s => s.Name == button.Content as string).FirstOrDefault();
                 if (room.Auto)
                 {
 
@@ -128,7 +128,7 @@ namespace SmartHome
         {
             var button = sender as Button;
             {
-                var room = ViewManager.Rooms.Where(s => s.Name == button.Content as string).FirstOrDefault();
+                var room = Collections.Rooms.Where(s => s.Name == button.Content as string).FirstOrDefault();
 
                 if(room.Auto)
                 {
@@ -154,7 +154,7 @@ namespace SmartHome
 
         private void AddUnitsToRoom(object sender, RoutedEventArgs e)
         {
-            var room = ViewManager.Rooms.Where(s => s.Name == (sender as Button).Content).First();
+            var room = Collections.Rooms.Where(s => s.Name == (sender as Button).Content).First();
             if (isDelete)
             {
                 (sender as Button).Visibility = Visibility.Collapsed;              
@@ -162,16 +162,16 @@ namespace SmartHome
                 foreach (var node in room.GetUnits())
                 {
                     node.Location = "";
-                    ViewManager.UnitsToLocalize.Add(node.Id);
+                    Collections.UnitsToLocalize.Add(node.Id);
                 }             
             }
             else
             {
-                foreach (var id in ViewManager.UnitsToLocalize)
+                foreach (var id in Collections.UnitsToLocalize)
                 {
                     room.AddUnit(id);
                 }
-                ViewManager.UnitsToLocalize.Clear();
+                Collections.UnitsToLocalize.Clear();
                 this.Frame.Navigate(typeof(MainPage));
             }
         }

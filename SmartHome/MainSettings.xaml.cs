@@ -66,7 +66,7 @@ namespace SmartHome
         private void IsAuto_Changed(object sender, RoutedEventArgs e)
         {
             var toggle = sender as ToggleSwitch;
-            foreach(var room in ViewManager.Rooms)
+            foreach(var room in Collections.Rooms)
             {
                 room.SetAuto(toggle.IsOn);
             } 

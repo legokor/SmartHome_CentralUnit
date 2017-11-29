@@ -1,75 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="SmartHome.DataProcessor" Collapsed="true">
-    <Position X="0.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAkgAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
-      <FileName>DataProcessor.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SmartHome.App" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="13.25" Y="0.5" Width="1.5" />
+  <Class Name="SmartHome.App" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAQAAIAAA=</HashCode>
       <FileName>App.xaml.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.Config" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+  <Class Name="SmartHome.Config" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Config.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.ContentDialogWithOK" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="4" Y="0.5" Width="1.5" />
+  <Class Name="SmartHome.ContentDialogWithOK" BaseTypeListCollapsed="true">
+    <Position X="17.75" Y="9.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
       <FileName>ContentDialogWithOK.xaml.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Orientation="Right" Position="0.491" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.ContentDialogWithText" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+  <Class Name="SmartHome.ContentDialogWithText" BaseTypeListCollapsed="true">
+    <Position X="20.25" Y="8.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAEAAACCAAAAA=</HashCode>
       <FileName>ContentDialogWithText.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.CreateUser" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="4" Y="1.5" Width="1.5" />
+  <Class Name="SmartHome.CreateUser" BaseTypeListCollapsed="true">
+    <Position X="5" Y="19" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAQAAAAAAAAA=</HashCode>
       <FileName>CreateUser.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.DataElement" Collapsed="true">
-    <Position X="5.75" Y="1.5" Width="1.5" />
+  <Class Name="SmartHome.DataProcessor">
+    <Position X="13.75" Y="7.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAABAACAAAAAAEAAAAAAAAAAAQEBAA=</HashCode>
-      <FileName>DataElement.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAkgAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataProcessor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SmartHome.DBInstance" Collapsed="true">
-    <Position X="7.5" Y="1.5" Width="1.5" />
+  <Class Name="SmartHome.DBInstance">
+    <Position X="25.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAEAAAAAAAgQAAAAAAAAAAAQAQAAAAAAAAAABAAAAAE=</HashCode>
+      <HashCode>oAEAAAAAAAgQAAAAACAAAAAQAQAAAAAAAAAABAAAAAE=</HashCode>
       <FileName>DBInstance.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SmartHome.Forgotten" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11" Y="1.5" Width="1.5" />
+  <Class Name="SmartHome.Forgotten" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="19" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAACA=</HashCode>
       <FileName>Forgotten.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.HowManyLevelContentDialog" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="2" Width="1.5" />
+  <Class Name="SmartHome.HowManyLevelContentDialog" BaseTypeListCollapsed="true">
+    <Position X="20.25" Y="10" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAQAAAAAAAACAQAAAAAAAAAAAAEAAACCAAAAA=</HashCode>
       <FileName>HowManyLevelContentDialog.xaml.cs</FileName>
@@ -77,7 +71,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="SmartHome.LineChart" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="4" Y="2.5" Width="1.5" />
+    <Position X="1.5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAEAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
       <FileName>LineChart.xaml.cs</FileName>
@@ -85,46 +79,46 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="SmartHome.Spot" Collapsed="true">
-    <Position X="7.5" Y="4.5" Width="1.5" />
+    <Position X="0.75" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAQA=</HashCode>
       <FileName>LineChart.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SmartHome.Localizer" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="5.75" Y="2.5" Width="1.5" />
+  <Class Name="SmartHome.Localizer" BaseTypeListCollapsed="true">
+    <Position X="9" Y="16.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAQCAAAAAAAAAAAAAEAAAAAAAQAAAQAAAAAAAAAAQA=</HashCode>
       <FileName>Localizer.xaml.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.1" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.LoginScreen" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="7.5" Y="2.5" Width="1.5" />
+  <Class Name="SmartHome.LoginScreen" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="16.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAgAAAAAIAQAAAAAAAAA=</HashCode>
       <FileName>LoginScreen.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.MainPage" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="9.25" Y="2.5" Width="1.5" />
+  <Class Name="SmartHome.MainPage" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="11.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AIAAEIAABAAIIAAgAAAgAEAAAgCAAAABAAAFAAQAAAA=</HashCode>
       <FileName>MainPage.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.MainSettings" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11" Y="2.5" Width="1.5" />
+  <Class Name="SmartHome.MainSettings" BaseTypeListCollapsed="true">
+    <Position X="1" Y="16.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIBAAAAAAAABAAAQIAAAAAAADAgAAACAAAAA=</HashCode>
+      <HashCode>AAAAAAAAYBAAAAAAAABUAAQIAAAAAAADEgAAACAAAAA=</HashCode>
       <FileName>MainSettings.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.Map" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="3.5" Width="1.5" />
+  <Class Name="SmartHome.Map" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="16.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAQAIAAACAIgAUIAUAAABAAEABAAAAAAAQAQA=</HashCode>
       <FileName>Map.xaml.cs</FileName>
@@ -132,28 +126,28 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="SmartHome.Model">
-    <Position X="4" Y="6.25" Width="1.5" />
+    <Position X="25.5" Y="0.5" Width="2" />
+    <Members>
+      <Method Name="OnConfiguring" Hidden="true" />
+      <Method Name="OnModelCreating" Hidden="true" />
+    </Members>
     <TypeIdentifier>
-      <HashCode>AAAAACAAAQAAABAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAACAAAQAAABAAAAAAAAAAEAAAAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Model.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SmartHome.Sample" Collapsed="true">
-    <Position X="5.75" Y="7" Width="1.5" />
+  <Class Name="SmartHome.DataSample">
+    <Position X="8" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABCAACAAAEAAIAAAAAAAEAAAAAAAAAAAQACAAAEAA=</HashCode>
-      <FileName>Model.cs</FileName>
+      <HashCode>AAAAAACAAAgAAgAABAACAAAAEAABAAAIAAAAAAAEAAA=</HashCode>
+      <FileName>DataSample.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SenderId" />
+    </ShowAsAssociation>
   </Class>
-  <Class Name="SmartHome.User" Collapsed="true">
-    <Position X="2" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAQAAAAAAgAAAAAAAAAAAAAgAAAAAAAgAAAAA=</HashCode>
-      <FileName>Model.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SmartHome.ModifyPassword" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="5.75" Y="3.5" Width="1.5" />
+  <Class Name="SmartHome.ModifyPassword" BaseTypeListCollapsed="true">
+    <Position X="2" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAACAA=</HashCode>
       <FileName>ModifyPassword.xaml.cs</FileName>
@@ -161,82 +155,76 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="SmartHome.Room">
-    <Position X="7.5" Y="10" Width="1.5" />
+    <Position X="15.75" Y="3.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AFACAAIABEIIAASAABAAA0SAQQAAIAAAAEAAACCAgBA=</HashCode>
+      <HashCode>AFACABIABEIAAASAABAAA0SAQQAAIAAAAEAAACCAgBA=</HashCode>
       <FileName>Room.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SmartHome.RoomCreater" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="9.25" Y="3.5" Width="1.5" />
+  <Class Name="SmartHome.RoomCreater" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="19.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AFAAAEAAQAAAAQBAACASgAEAAIAAAAIAEQAQAAAAAAA=</HashCode>
       <FileName>RoomCreater.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.RoomSettings" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11" Y="3.5" Width="1.5" />
+  <Class Name="SmartHome.RoomSettings" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="25.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQQAAAAABACAgAAAAAAAAA=</HashCode>
       <FileName>RoomSettings.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.SelectPlace" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="2.25" Y="4.5" Width="1.5" />
+  <Class Name="SmartHome.SelectPlace" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAgAAQAAAAAAAAAAA=</HashCode>
       <FileName>SelectPlace.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.SelectUnit" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="4" Y="4.5" Width="1.5" />
+  <Class Name="SmartHome.SelectUnit" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="21.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAgCAAAAAAIAAAAAAAAAAQAAAUAgAAYAAAAgBAAAAA=</HashCode>
       <FileName>SelectUnit.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.SetAcces" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="5.75" Y="4.5" Width="1.5" />
+  <Class Name="SmartHome.SetAcces" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="21.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAQAAAQQggAQAAAAAACAAAA=</HashCode>
       <FileName>SetAcces.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.ThemeManager" Collapsed="true">
-    <Position X="9.25" Y="4.5" Width="1.5" />
+  <Class Name="SmartHome.ThemeManager">
+    <Position X="4.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQACAAAQAgAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>ThemeManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SmartHome.UdpServer" Collapsed="true">
-    <Position X="11" Y="4.5" Width="1.5" />
+  <Class Name="SmartHome.UdpServer">
+    <Position X="18" Y="12.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAQAAAAAAAACAAQAAAAAAAAABAAAAAAAFAAAA=</HashCode>
       <FileName>UdpServer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SmartHome.Unit">
-    <Position X="3.75" Y="10" Width="1.5" />
+  <Class Name="SmartHome.UnitDatas" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="25.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAIAAAAAAAAAAAAAAQAAACAAAAA=</HashCode>
-      <FileName>Unit.cs</FileName>
+      <HashCode>EAAAAACAAAAABAEAFAACAAAABC0AAAAAAAAAAAQEBAA=</HashCode>
+      <FileName>UnitDatas.xaml.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.UserClass" Collapsed="true">
-    <Position X="12.5" Y="9.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AABAAAEAQCgAAAAAAAAAAAAAQwAAAAABAAAAAgAAAAQ=</HashCode>
-      <FileName>UserClass.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SmartHome.UserManager" Collapsed="true">
-    <Position X="12.25" Y="8.25" Width="2" />
+  <Class Name="SmartHome.UserManager">
+    <Position X="20" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAQAAAAAAAAAAAgIAAIEAAAABEAAQAAAAAAA=</HashCode>
       <FileName>UserManager.cs</FileName>
@@ -245,79 +233,104 @@
       <Field Name="LoginedUser" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="SmartHome.ViewManager" Collapsed="true">
-    <Position X="6" Y="5.5" Width="1.5" />
+  <Class Name="SmartHome.Collections">
+    <Position X="11" Y="6.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>ABAAAAAEAIAAAAAAAABACAACAAAAAAAgAAAAAEAAAAA=</HashCode>
-      <FileName>ViewManager.cs</FileName>
+      <FileName>Collections.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ActualDatas" />
+    </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="SmartHome.Converters.ConverterOnlyNotLogin" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+  <Class Name="SmartHome.Converters.ConverterOnlyNotLogin" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="1.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Converters\ConverterOnlyNotLogin.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.Converters.ConverterToAdmin" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="9.25" Y="0.5" Width="1.5" />
+  <Class Name="SmartHome.Converters.ConverterToAdmin" BaseTypeListCollapsed="true">
+    <Position X="3" Y="3" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Converters\ConverterToAdmin.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.Converters.ConverterToMinimal" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11" Y="0.5" Width="1.5" />
+  <Class Name="SmartHome.Converters.ConverterToMinimal" BaseTypeListCollapsed="true">
+    <Position X="3" Y="1.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Converters\ConverterToMinimal.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.Converters.ConverterToNormal" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="13" Y="1.75" Width="1.5" />
+  <Class Name="SmartHome.Converters.ConverterToNormal" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="1.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Converters\ConverterToNormal.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.Converters.ConverterToNotLogined" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="2.25" Y="1.5" Width="1.5" />
+  <Class Name="SmartHome.Converters.ConverterToNotLogined" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="3" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Converters\ConverterToNotLogined.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="SmartHome.Migrations.FirstMigration" Collapsed="true">
-    <Position X="9.25" Y="1.5" Width="1.5" />
+  <Class Name="SmartHome.User">
+    <Position X="22.25" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
-      <FileName>Migrations\20171128230440_FirstMigration.cs</FileName>
+      <HashCode>AABAAAEAACgAAAAAAAAAAAAAQwAAAAABAAAAAgAAAAQ=</HashCode>
+      <FileName>User.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SmartHome.Migrations.ModelModelSnapshot" Collapsed="true">
-    <Position X="4" Y="3.5" Width="1.5" />
+  <Class Name="SmartHome.Unit">
+    <Position X="13.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAQAIAAAAAAAAAAAAAAQAAACAAAAA=</HashCode>
+      <FileName>Unit.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Id" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SmartHome.Migrations.ModelModelSnapshot">
+    <Position X="25.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
       <FileName>Migrations\ModelModelSnapshot.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="SmartHome.AccesLevel" Collapsed="true">
-    <Position X="0.5" Y="6.75" Width="1.5" />
+  <Class Name="SmartHome.Migrations.FirstMigration">
+    <Position X="25.75" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20171129214953_FirstMigration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.String" Collapsed="true">
+    <Position X="10.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="SmartHome.AccesLevel">
+    <Position X="5.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAABAAAAAAAAAAgAAAQAAAAAIAAAAAAAAAAAAAAA=</HashCode>
       <FileName>UserManager.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Delegate Name="SmartHome.RefreshSenderCollection" Collapsed="true">
-    <Position X="0.5" Y="7.75" Width="1.5" />
+  <Delegate Name="SmartHome.RefreshSenderCollection">
+    <Position X="16.75" Y="12" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewManager.cs</FileName>
+      <FileName>Collections.cs</FileName>
     </TypeIdentifier>
   </Delegate>
   <Font Name="Segoe UI" Size="9" />

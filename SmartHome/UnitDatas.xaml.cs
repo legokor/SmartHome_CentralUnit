@@ -25,47 +25,47 @@ namespace SmartHome
     public sealed partial class UnitDatas : Page
     {
         public static readonly DependencyProperty TemperatureDependencyProperty =
-            DependencyProperty.Register("Temperature", typeof(string), typeof(UnitDatas), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Temperature", typeof(double), typeof(UnitDatas), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty HumidityDependencyProperty =
-            DependencyProperty.Register("Humidity", typeof(string), typeof(UnitDatas), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Humidity", typeof(double), typeof(UnitDatas), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty MovementDependencyProperty =
-            DependencyProperty.Register("Movement", typeof(string), typeof(UnitDatas), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Movement", typeof(int), typeof(UnitDatas), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty CoDependencyProperty =
-            DependencyProperty.Register("Co", typeof(string), typeof(UnitDatas), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Co", typeof(double), typeof(UnitDatas), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty LpgDependencyProperty =
-            DependencyProperty.Register("Lpg", typeof(string), typeof(UnitDatas), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Lpg", typeof(double), typeof(UnitDatas), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty SmokeDependencyProperty =
-            DependencyProperty.Register("Smoke", typeof(string), typeof(UnitDatas), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Smoke", typeof(double), typeof(UnitDatas), new PropertyMetadata(string.Empty));
         public static string ChosenUnit { get; set; }
 
-        public string Temperature
+        public double Temperature
         {
-            get { return (string)GetValue(TemperatureDependencyProperty); }
+            get { return (double)GetValue(TemperatureDependencyProperty); }
             set { SetValue(TemperatureDependencyProperty, value); }
         }
-        public string Humidity
+        public double Humidity
         {
-            get { return (string)GetValue(HumidityDependencyProperty); }
+            get { return (double)GetValue(HumidityDependencyProperty); }
             set { SetValue(HumidityDependencyProperty, value); }
         }
-        public string Movement
+        public int Movement
         {
-            get { return (string)GetValue(MovementDependencyProperty); }
+            get { return (int)GetValue(MovementDependencyProperty); }
             set { SetValue(MovementDependencyProperty, value); }
         }
-        public string Co
+        public double Co
         {
-            get { return (string)GetValue(CoDependencyProperty); }
+            get { return (double)GetValue(CoDependencyProperty); }
             set { SetValue(CoDependencyProperty, value); }
         }
-        public string Lpg
+        public double Lpg
         {
-            get { return (string)GetValue(LpgDependencyProperty); }
+            get { return (double)GetValue(LpgDependencyProperty); }
             set { SetValue(LpgDependencyProperty, value); }
         }
-        public string Smoke
+        public double Smoke
         {
-            get { return (string)GetValue(SmokeDependencyProperty); }
+            get { return (double)GetValue(SmokeDependencyProperty); }
             set { SetValue(SmokeDependencyProperty, value); }
         }
 
@@ -73,15 +73,15 @@ namespace SmartHome
 
         public void RefreshTextBlocks(string newSenderId)
         {
-            if (newSenderId==ChosenUnit && ViewManager.ActualDatas.ContainsKey(ChosenUnit) && ViewManager.ActualDatas[ChosenUnit] is DataElement)
+            if (newSenderId==ChosenUnit && Collections.ActualDatas.ContainsKey(ChosenUnit) && Collections.ActualDatas[ChosenUnit] is DataSample)
             {
-                var unit = ViewManager.ActualDatas[ChosenUnit] as DataElement;
+                var unit = Collections.ActualDatas[ChosenUnit] as DataSample;
                 Temperature =unit.Temperature;
                 Humidity = unit.Humidity;
-                Co = unit.Co;
-                Lpg = unit.Lpg;
-                Smoke = unit.Smoke;
-                TbMovement.Visibility = unit.Movement == "1" ? Visibility.Visible : Visibility.Collapsed;
+                Co = unit.CoLevel;
+                Lpg = unit.LpgLevel;
+                Smoke = unit.SmokeLevel;
+                TbMovement.Visibility = unit.Movement == 1 ? Visibility.Visible : Visibility.Collapsed;
             }
             
         }
@@ -90,12 +90,12 @@ namespace SmartHome
             this.InitializeComponent();
             DataContext = this;
             RefreshTextBlocks(ChosenUnit);
-            ViewManager.ResreshSenderDataEvent += RefreshTextBlocks;
+            Collections.ResreshSenderDataEvent += RefreshTextBlocks;
         }
 
         private void TBBack_Click(object sender, RoutedEventArgs e)
         {
-            ViewManager.ResreshSenderDataEvent -= RefreshTextBlocks;
+            Collections.ResreshSenderDataEvent -= RefreshTextBlocks;
             this.Frame.Navigate(typeof(Map), "Localizing");
         }
     }

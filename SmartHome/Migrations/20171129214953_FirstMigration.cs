@@ -17,7 +17,7 @@ namespace SmartHome.Migrations
                     Humidity = table.Column<double>(nullable: false),
                     LpgLevel = table.Column<double>(nullable: false),
                     Movement = table.Column<int>(nullable: false),
-                    SenderId = table.Column<int>(nullable: false),
+                    SenderId = table.Column<string>(nullable: false),
                     SmokeLevel = table.Column<double>(nullable: false),
                     Temperature = table.Column<double>(nullable: false),
                     TimeStamp = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
@@ -28,17 +28,32 @@ namespace SmartHome.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Unit",
                 columns: table => new
                 {
-                    email = table.Column<string>(nullable: false),
-                    accesLevel = table.Column<int>(nullable: false),
-                    password = table.Column<string>(nullable: false),
-                    salt = table.Column<string>(nullable: false)
+                    BuiltinID = table.Column<string>(nullable: false),
+                    Auto = table.Column<bool>(nullable: false),
+                    Id = table.Column<string>(nullable: true),
+                    Location = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.email);
+                    table.PrimaryKey("PK_Unit", x => x.BuiltinID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Email = table.Column<string>(nullable: false),
+                    EncryptedPassword = table.Column<string>(nullable: false),
+                    Level = table.Column<int>(nullable: false),
+                    Salt = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Email);
                 });
         }
 
@@ -46,6 +61,9 @@ namespace SmartHome.Migrations
         {
             migrationBuilder.DropTable(
                 name: "DataSample");
+
+            migrationBuilder.DropTable(
+                name: "Unit");
 
             migrationBuilder.DropTable(
                 name: "User");

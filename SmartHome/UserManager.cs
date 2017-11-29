@@ -11,7 +11,7 @@ namespace SmartHome
     abstract class UserManager
     {
         public static bool IsLogined = false;
-        public static UserClass LoginedUser;
+        public static User LoginedUser;
         public static AccesLevel Level = AccesLevel.NotLogined;
 
         public static bool Login(string pass, string email)
@@ -39,31 +39,31 @@ namespace SmartHome
             Level = AccesLevel.NotLogined;
         }
 
-        public static List<UserClass> GetAllUser()
+        public static List<User> GetAllUser()
         {
             var users = DBInstance.AvailableUser();
-            List<UserClass> userclasses = new List<UserClass>();
+            List<User> users2 = new List<User>();
             foreach (var user in users)
             {
-                if (user.email != LoginedUser.Email)
+                if (user.Email != LoginedUser.Email)
                 {
-                    userclasses.Add(new UserClass(user));
+                    users2.Add(user);
                 }
             }
-            return userclasses;
+            return users2;
         }
 
-        public static UserClass GetUser(string email)
+        public static User GetUser(string email)
         {
             var user = DBInstance.FindUser(email);
             if (user == null) return null;
-            return new UserClass(user);
+            return user;
 
         }
 
         public static void CreateUser(string pass, string email)
         {
-            var user = new UserClass();
+            var user = new User();
             user.Email = email;
             user.Level = AccesLevel.Minimal;
             user.GetSalt();
@@ -79,7 +79,7 @@ namespace SmartHome
         public static void SetAccesLevel(string email, AccesLevel newLevel)
         {
             if (Level != AccesLevel.Admin) return;
-            var user = new UserClass(DBInstance.FindUser(email));
+            var user = DBInstance.FindUser(email);
             if (user != null)
             {
                 user.Level = newLevel;

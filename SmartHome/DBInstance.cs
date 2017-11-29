@@ -8,25 +8,34 @@ namespace SmartHome
 {
     abstract class  DBInstance
     {
-        public static void SaveData(DataElement data)
+        public static void SaveData(DataSample data)
         {
             using (var context = new Model())
-            {
-                var sample = new DataSample
-                {
-                    SenderId = Int32.Parse(data.Id),
-                    Movement = Int32.Parse(data.Movement),
-                    Temperature = double.Parse(data.Temperature),
-                    Humidity = double.Parse(data.Humidity),
-                    CoLevel = double.Parse(data.Co),
-                    SmokeLevel = double.Parse(data.Smoke),
-                    LpgLevel = double.Parse(data.Lpg)
-                 };
-                UdpServer.UploadToServer(sample);
-                context.DataSamples.Add(sample);
+            {               
+                UdpServer.UploadToServer(data);
+                context.DataSamples.Add(data);
                 context.SaveChanges();
             }
         }
+
+        public static void SaveUnit(Unit unit)
+        {
+            using (var context = new Model())
+            {             
+                context.Units.Add(unit);
+                context.SaveChanges();
+            }
+        }
+        public static List<Unit> LoadUnits()
+        {
+            using (var context = new Model())
+            {
+                var units = context.Units .ToList();
+
+                return units;
+            }
+        }
+
 
         public static List<DataSample> LoadData(string id)
         {
@@ -40,19 +49,11 @@ namespace SmartHome
             }
         }
 
-        public static void SaveUser(UserClass user)
+        public static void SaveUser(User user)
         {
             using (var context = new Model())
-            {
-                var newUser = new User
-                {
-                    email = user.Email,
-                    password = user.EncryptedPassword,
-                    accesLevel = user.Level,
-                    salt = user.Salt
-                    
-                };
-                context.Users.Add(newUser);
+            {             
+                context.Users.Add(user);
                 context.SaveChanges();
             }
         }
@@ -62,7 +63,7 @@ namespace SmartHome
             using (var context = new Model())
             {
                 var user = context.Users
-                    .Where(b => b.email == email)
+                    .Where(b => b.Email == email)
                     .ToList();
                 if (!user.Any()) return null;
                 return user.First();
@@ -78,44 +79,36 @@ namespace SmartHome
             }
         }
 
-        public static void SaveAdmin(UserClass user)
+        public static void SaveAdmin(User user)
         {
             using (var context = new Model())
             {
-                var newUser = new User
-                {
-                    email = user.Email,
-                    password = user.EncryptedPassword,
-                    accesLevel = AccesLevel.Admin,
-                    salt = user.Salt
-
-                };
-                context.Users.Add(newUser);
+                context.Users.Add(user);
                 context.SaveChanges();
             }
         }
 
 
-        public static void UpdateUser(UserClass user)
+        public static void UpdateUser(User user)
         {
             using (var context = new Model())
             {
-               foreach(var newUser in context.Users.Where(s=>s.email == user.Email))
+               foreach(var newUser in context.Users.Where(s=>s.Email == user.Email))
                 {
-                    newUser.email = user.Email;
-                    newUser.password = user.EncryptedPassword;
-                    newUser.accesLevel = user.Level;
-                    newUser.salt = user.Salt;
+                    newUser.Email = user.Email;
+                    newUser.EncryptedPassword = user.EncryptedPassword;
+                    newUser.Level = user.Level;
+                    newUser.Salt = user.Salt;
                 }
                 context.SaveChanges();
             }
         }
 
-        public static void RemoveUser(UserClass user)
+        public static void RemoveUser(User user)
         {
             using (var context = new Model())
             {
-                foreach (var userToDelete in context.Users.Where(s => s.email == user.Email))
+                foreach (var userToDelete in context.Users.Where(s => s.Email == user.Email))
                 {
                     context.Users.Remove(userToDelete);
                 }

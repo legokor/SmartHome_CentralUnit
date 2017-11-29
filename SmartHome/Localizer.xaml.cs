@@ -26,7 +26,7 @@ namespace SmartHome
         public Localizer()
         {
             this.InitializeComponent();
-            Nodes.ItemsSource = ViewManager.UnitsToLocalize;
+            Nodes.ItemsSource = Collections.UnitsToLocalize;
         }
         private void Bt_Cancel(object sender, RoutedEventArgs e)
         {
@@ -40,7 +40,7 @@ namespace SmartHome
 
         private void Bt_Delete(object sender, RoutedEventArgs e)
         {          
-            ViewManager.UnitsToLocalize.Remove(Nodes.SelectedItem as string); 
+            Collections.UnitsToLocalize.Remove(Nodes.SelectedItem.ToString()); 
         }
 
         private async void Bt_AddNew(object sender, RoutedEventArgs e)
@@ -57,7 +57,7 @@ namespace SmartHome
 
         private async void Bt_AddExisting(object sender, RoutedEventArgs e)
         {
-            if (ViewManager.Rooms.Any())
+            if (Collections.Rooms.Any())
             {
                 Frame.Navigate(typeof(Map), "Localizing");
             }

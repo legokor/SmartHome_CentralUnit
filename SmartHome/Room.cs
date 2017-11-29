@@ -53,18 +53,18 @@ namespace SmartHome
 
         public IEnumerable<Unit> GetUnits()
         {
-            return ViewManager.CurrentNodes.Where((s => s.Location == Name));
+            return Collections.CurrentNodes.Where((s => s.Location == Name));
         }
 
-        public IEnumerable<DataElement> GetDataElements()
+        public IEnumerable<DataSample> GetDataSamples()
         {
-            var units = ViewManager.CurrentNodes.Where((s => s.Location == Name));
-            List<DataElement> list = new List<DataElement>();
+            var units = Collections.CurrentNodes.Where((s => s.Location == Name));
+            List<DataSample> list = new List<DataSample>();
             foreach (var unit in units)
             {
-                if(ViewManager.ActualDatas.ContainsKey(unit.Id))
+                if(Collections.ActualDatas.ContainsKey(unit.Id))
                 {
-                    list.Add(ViewManager.ActualDatas[unit.Id]);
+                    list.Add(Collections.ActualDatas[unit.Id]);
                 }                
             }
             return list;
@@ -74,16 +74,16 @@ namespace SmartHome
 
         public IEnumerable<Unit> GetPIRs()
         {
-            return ViewManager.CurrentNodes.Where((s => s.Location == Name && s.Type == "PIR"));
+            return Collections.CurrentNodes.Where((s => s.Location == Name && s.Type == "PIR"));
         }
         public IEnumerable<Unit> GetSwitchers()
         {
-            return ViewManager.CurrentNodes.Where((s => s.Location == Name && s.Type == "Switcher"));
+            return Collections.CurrentNodes.Where((s => s.Location == Name && s.Type == "Switcher"));
         }
 
         public void AddUnit(string id)
         {
-            var unit = ViewManager.CurrentNodes.Where(s => s.Id == id);
+            var unit = Collections.CurrentNodes.Where(s => s.Id == id);
             if (unit.Any())
             {
                 unit.First().Location = Name;
@@ -117,26 +117,26 @@ namespace SmartHome
 
         public static Room GetRoomByName(string name)
         {
-            return ViewManager.Rooms.Where(s => s.Name == name).First();
+            return Collections.Rooms.Where(s => s.Name == name).First();
         }
 
         public void DeleteFromList()
         {
-            ViewManager.Rooms.Remove(this);
+            Collections.Rooms.Remove(this);
         }
         public void AddToList()
         {
-            ViewManager.Rooms.Add(this);
+            Collections.Rooms.Add(this);
         }
 
         public static void DeleteByRoom(Room room)
         {
-            ViewManager.Rooms.Where(s => s.Name == room.Name).First().DeleteFromList();
+            Collections.Rooms.Where(s => s.Name == room.Name).First().DeleteFromList();
         }
 
         public static void AddByRoom(Room room)
         {
-            ViewManager.Rooms.Where(s => s.Name == room.Name).First().AddToList();
+            Collections.Rooms.Where(s => s.Name == room.Name).First().AddToList();
         }
 
         public void Rename(string newName)

@@ -30,12 +30,12 @@ namespace SmartHome
         {
             double temp = 0.0;
             int count = 0;
-            foreach (var o in ViewManager.ActualDatas)
+            foreach (var o in Collections.ActualDatas)
             {
-                if (o.Value is DataElement)
+                if (o.Value is DataSample)
                 {
-                    var number = Double.Parse((o.Value as DataElement).Temperature == "nan"? "0.00": (o.Value as DataElement).Temperature);
-                    temp += number is Double ? number : 0.0;
+                      //var number = (o.Value as DataSample).Temperature == "nan"? "0.00": (o.Value as DataSample).Temperature);
+                    temp += (o.Value as DataSample).Temperature;
                     count++;
                 }
             }
@@ -82,15 +82,15 @@ namespace SmartHome
                 StartServer();
                 RoomCreater.LoadListFromFile();
 
-                DataElement newel = new DataElement
+                DataSample newel = new DataSample
                 {
-                    Id = "21000000",
-                    Temperature = "35",
-                    Humidity ="20",
-                    Movement = "1",
-                    Co ="12",
-                    Lpg = "0",
-                    Smoke = "0"
+                    SenderId = "21000000",
+                    Temperature = 35,
+                    Humidity =20,
+                    Movement = 1,
+                    CoLevel =12,
+                    LpgLevel = 0,
+                    SmokeLevel = 0
                 };
                 
 
@@ -103,9 +103,9 @@ namespace SmartHome
                 };
                 Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    ViewManager.AddToActualDatas(newel);
-                    ViewManager.UnitsToLocalize.Add(newel.Id);
-                    ViewManager.AddToNodeList(newUnit);
+                    Collections.AddToActualDatas(newel);
+                    Collections.UnitsToLocalize.Add(newel.SenderId);
+                    Collections.AddToNodeList(newUnit);
                 });
             }
             this.InitializeComponent();
@@ -114,7 +114,7 @@ namespace SmartHome
             
 
             RefreshAvgTemp("init");
-            ViewManager.ResreshSenderDataEvent += RefreshAvgTemp;
+            Collections.ResreshSenderDataEvent += RefreshAvgTemp;
 
            
         }
@@ -129,9 +129,9 @@ namespace SmartHome
 
         private async void Open_Config(object sender, RoutedEventArgs e)
         {
-            if (ViewManager.Rooms.Any())
+            if (Collections.Rooms.Any())
             {
-                ViewManager.ResreshSenderDataEvent -= RefreshAvgTemp;
+                Collections.ResreshSenderDataEvent -= RefreshAvgTemp;
                 StopClock();
                 this.Frame.Navigate(typeof(Map), "Selecting");
             }
@@ -152,7 +152,7 @@ namespace SmartHome
         private void Login_Click(object sender, RoutedEventArgs e)
         {
            
-                ViewManager.ResreshSenderDataEvent -= RefreshAvgTemp;
+                Collections.ResreshSenderDataEvent -= RefreshAvgTemp;
                 StopClock();
                 this.Frame.Navigate(typeof(LoginScreen));            
         }
@@ -160,7 +160,7 @@ namespace SmartHome
         private async void Logout_Click(object sender, RoutedEventArgs e)
         {
             UserManager.Logout();
-            ViewManager.ResreshSenderDataEvent -= RefreshAvgTemp;
+            Collections.ResreshSenderDataEvent -= RefreshAvgTemp;
             StopClock();
             ContentDialogWithOK dialog = new ContentDialogWithOK
             {
@@ -176,13 +176,13 @@ namespace SmartHome
 
         private void Bt_Locate(object sender, RoutedEventArgs e)
         {
-            ViewManager.ResreshSenderDataEvent -= RefreshAvgTemp;
+            Collections.ResreshSenderDataEvent -= RefreshAvgTemp;
             StopClock();
             this.Frame.Navigate((typeof(Localizer)));
         }
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
-            ViewManager.ResreshSenderDataEvent -= RefreshAvgTemp;
+            Collections.ResreshSenderDataEvent -= RefreshAvgTemp;
             StopClock();
             this.Frame.Navigate(typeof(MainSettings));
         }
@@ -194,9 +194,9 @@ namespace SmartHome
 
         private async void Open_Control(object sender, RoutedEventArgs e)
         {
-            if (ViewManager.Rooms.Any())
+            if (Collections.Rooms.Any())
             {
-                ViewManager.ResreshSenderDataEvent -= RefreshAvgTemp;
+                Collections.ResreshSenderDataEvent -= RefreshAvgTemp;
                 StopClock();
                 this.Frame.Navigate(typeof(Map), "Switch");
             }

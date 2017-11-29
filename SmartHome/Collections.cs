@@ -16,10 +16,10 @@ using Windows.Security.Cryptography.Core;
 namespace SmartHome
 {
     public delegate void RefreshSenderCollection(string newSenderId);
-    internal abstract class ViewManager
+    internal abstract class Collections
     {
         public static ObservableCollection<Unit> CurrentNodes { get; } = new ObservableCollection<Unit>();
-        public static Dictionary<string, DataElement> ActualDatas { get; } = new Dictionary<string, DataElement>();
+        public static Dictionary<string, DataSample> ActualDatas { get; } = new Dictionary<string, DataSample>();
 
         public static ObservableCollection<string> UnitsToLocalize { get; } = new ObservableCollection<string>();
 
@@ -33,21 +33,21 @@ namespace SmartHome
             CurrentNodes.Add(newSender);
             // RefreshSenderCollectionEvent?.Invoke(newSenderId);
         }
-        public static void AddToActualDatas(DataElement newSender)
+        public static void AddToActualDatas(DataSample newSender)
         {
-            if (ViewManager.ActualDatas.ContainsKey(newSender.Id))
+            if (Collections.ActualDatas.ContainsKey(newSender.SenderId))
             {
                 RefreshActualDatas(newSender);
             }
             else
             {
-                ActualDatas.Add(newSender.Id, newSender);
+                ActualDatas.Add(newSender.SenderId, newSender);
             }               
-            ResreshSenderDataEvent?.Invoke(newSender.Id);
+            ResreshSenderDataEvent?.Invoke(newSender.SenderId);
         }
-        public static void RefreshActualDatas(DataElement newSender)
+        public static void RefreshActualDatas(DataSample newSender)
         {
-            ActualDatas[newSender.Id] = newSender;           
+            ActualDatas[newSender.SenderId] = newSender;           
         }
     }
 }

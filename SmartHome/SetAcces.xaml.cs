@@ -22,8 +22,8 @@ namespace SmartHome
     /// </summary>
     public sealed partial class SetAcces : Page
     {
-        private List<UserClass> units = UserManager.GetAllUser();
-        private UserClass selectedUser;
+        private List<User> units = UserManager.GetAllUser();
+        private User selectedUser;
         private AccesLevel accesLevel;
         public SetAcces()
         {

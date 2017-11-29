@@ -1,6 +1,8 @@
 ﻿using EASendMailRT;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -8,25 +10,20 @@ using System.Threading.Tasks;
 
 namespace SmartHome
 {
-
-    class UserClass
+    [Table("User")]
+    class User
     {
+        [Key]
         public string Email { get; set; }
+        [Required]
         public string EncryptedPassword { get; set; }
         private string password;
-        private string salt;
-        public string Salt { get { return salt; } }
+        [Required]
+        public string Salt { get; set; }
+        [Required]
         public AccesLevel Level { get; set; } = AccesLevel.Minimal;
 
-        public UserClass(User user)
-        {
-            Email = user.email;
-            EncryptedPassword = user.password;
-            salt = user.salt;
-            Level = user.accesLevel;
-        }
-
-        public UserClass()
+        public User()
         {
         }
 
@@ -37,7 +34,7 @@ namespace SmartHome
 
         public void ModifyPassword(string newPassword)
         {
-            var user = new UserClass(DBInstance.FindUser(this.Email));
+            var user = DBInstance.FindUser(this.Email);
             if (user != null)
             {
                 user.GetSalt();
@@ -99,7 +96,7 @@ namespace SmartHome
             var rng = RandomNumberGenerator.Create();
             var buff = new byte[32];
             rng.GetBytes(buff);
-            salt = Convert.ToBase64String(buff);
+            Salt = Convert.ToBase64String(buff);
 
         }
 

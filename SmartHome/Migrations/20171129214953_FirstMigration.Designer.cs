@@ -8,7 +8,7 @@ using SmartHome;
 namespace SmartHome.Migrations
 {
     [DbContext(typeof(Model))]
-    [Migration("20171128230440_FirstMigration")]
+    [Migration("20171129214953_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,7 +29,8 @@ namespace SmartHome.Migrations
 
                     b.Property<int>("Movement");
 
-                    b.Property<int>("SenderId");
+                    b.Property<string>("SenderId")
+                        .IsRequired();
 
                     b.Property<double>("SmokeLevel");
 
@@ -45,20 +46,38 @@ namespace SmartHome.Migrations
                     b.ToTable("DataSample");
                 });
 
-            modelBuilder.Entity("SmartHome.User", b =>
+            modelBuilder.Entity("SmartHome.Unit", b =>
                 {
-                    b.Property<string>("email")
+                    b.Property<string>("BuiltinID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("accesLevel");
+                    b.Property<bool>("Auto");
 
-                    b.Property<string>("password")
+                    b.Property<string>("Id");
+
+                    b.Property<string>("Location");
+
+                    b.Property<string>("Type");
+
+                    b.HasKey("BuiltinID");
+
+                    b.ToTable("Unit");
+                });
+
+            modelBuilder.Entity("SmartHome.User", b =>
+                {
+                    b.Property<string>("Email")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("EncryptedPassword")
                         .IsRequired();
 
-                    b.Property<string>("salt")
+                    b.Property<int>("Level");
+
+                    b.Property<string>("Salt")
                         .IsRequired();
 
-                    b.HasKey("email");
+                    b.HasKey("Email");
 
                     b.ToTable("User");
                 });

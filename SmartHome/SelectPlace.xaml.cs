@@ -26,7 +26,7 @@ namespace SmartHome
         {
             this.InitializeComponent();
             TBSelect.IsEnabled = false;
-            Nodes.ItemsSource = ViewManager.Rooms;
+            Nodes.ItemsSource = Collections.Rooms;
         }
 
         private void Open_HomePage(object sender, RoutedEventArgs e)

@@ -113,7 +113,7 @@
     <Compile Include="CreateUser.xaml.cs">
       <DependentUpon>CreateUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataElement.cs" />
+    <Compile Include="DataSample.cs" />
     <Compile Include="DataProcessor.cs" />
     <Compile Include="DBInstance.cs" />
     <Compile Include="Forgotten.xaml.cs">
@@ -140,9 +140,9 @@
     <Compile Include="Map.xaml.cs">
       <DependentUpon>Map.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20171128230440_FirstMigration.cs" />
-    <Compile Include="Migrations\20171128230440_FirstMigration.designer.cs">
-      <DependentUpon>20171128230440_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\20171129214953_FirstMigration.cs" />
+    <Compile Include="Migrations\20171129214953_FirstMigration.designer.cs">
+      <DependentUpon>20171129214953_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ModelModelSnapshot.cs" />
     <Compile Include="Model.cs" />
@@ -172,9 +172,9 @@
     <Compile Include="UnitDatas.xaml.cs">
       <DependentUpon>UnitDatas.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserClass.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="UserManager.cs" />
-    <Compile Include="ViewManager.cs" />
+    <Compile Include="Collections.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

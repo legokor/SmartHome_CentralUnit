@@ -16,6 +16,8 @@ namespace SmartHome
         public DbSet<DataSample> DataSamples { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Unit> Units { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DataSample>()
@@ -36,35 +38,4 @@ namespace SmartHome
             optionsBuilder.UseSqlite("Filename=database.db");
         }
     }
-
-    [Table("DataSample")]
-    class DataSample
-    {
-        [Key]
-        public Guid SamplingId { get; set; }
-        [Required]
-        public int SenderId { get; set; }
-        public double Temperature { get; set; }
-        public double Humidity { get; set; }
-        public double CoLevel { get; set; }
-        public double SmokeLevel { get; set; }
-        public double LpgLevel { get; set; }
-        public DateTime TimeStamp { get; set; }
-
-        public int Movement { get; set; }
-    }
-
-    [Table("User")]
-    class User
-    {
-        [Key]    
-        public string email { get; set; }
-        [Required]
-        public string password { get; set; }
-        [Required]
-        public AccesLevel accesLevel { get; set; }
-        [Required]
-        public string salt { get; set; }
-    }
-
- }
+}

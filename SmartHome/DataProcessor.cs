@@ -18,20 +18,20 @@ namespace SmartHome
             string cmd = data[0];
             if (cmd == "SND")
             {
-                DataElement newel = new DataElement
+                DataSample newel = new DataSample
                 {
-                    Id = data[1],
-                    Temperature = data[6],
-                    Humidity = data[5],
-                    Movement = data[7],
-                    Co = data[3],
-                    Lpg = data[2],
-                    Smoke = data[4]
+                    SenderId = data[1],
+                    Temperature = double.Parse(data[6]),
+                    Humidity = double.Parse(data[5]),
+                    Movement = int.Parse(data[7]),
+                    CoLevel = double.Parse(data[3]),
+                    LpgLevel = double.Parse(data[2]),
+                    SmokeLevel = double.Parse(data[4])
                 };
                 await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
                     AutoLightControl(newel);
-                    ViewManager.AddToActualDatas(newel);
+                    Collections.AddToActualDatas(newel);
                 });
                 DBInstance.SaveData(newel);
             }
@@ -45,7 +45,7 @@ namespace SmartHome
                 };
                 await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    ViewManager.AddToNodeList(newUnit);
+                    Collections.AddToNodeList(newUnit);
                 });
             }
 
@@ -60,7 +60,7 @@ namespace SmartHome
                 GivenId += 10000000;
                 await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    ViewManager.AddToNodeList(newUnit);
+                    Collections.AddToNodeList(newUnit);
                 });
             }
 
@@ -68,9 +68,9 @@ namespace SmartHome
             {              
                 await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    if (!ViewManager.UnitsToLocalize.Contains(data[1]))
+                    if (!Collections.UnitsToLocalize.Contains(data[1]))
                     {
-                        ViewManager.UnitsToLocalize.Add(data[1]);
+                        Collections.UnitsToLocalize.Add(data[1]);
                     }
                 });
 
@@ -78,15 +78,15 @@ namespace SmartHome
             return cmd;
         }
 
-        public static void AutoLightControl(DataElement newdata)
+        public static void AutoLightControl(DataSample newdata)
         {
-            var unit = ViewManager.CurrentNodes.Where(u => u.Id == newdata.Id).FirstOrDefault();
+            var unit = Collections.CurrentNodes.Where(u => u.Id == newdata.SenderId).FirstOrDefault();
             if ( unit != null && unit.Type == "PIR")
             {
-                Room room = ViewManager.Rooms.Where(r => r.Name == unit.Location).FirstOrDefault();
+                Room room = Collections.Rooms.Where(r => r.Name == unit.Location).FirstOrDefault();
                 if (room.Auto)
                 {
-                    if (newdata.Movement == "1")
+                    if (newdata.Movement == 1)
                     {
                         room.TurnLightOn(true);
                     }

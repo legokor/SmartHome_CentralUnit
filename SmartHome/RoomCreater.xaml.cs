@@ -46,7 +46,7 @@ namespace SmartHome
             btn.Height = 20;
             btn.Width = 20;
             map.PointerMoved += Map_PointerMoved;
-            foreach (var rooms in ViewManager.Rooms)
+            foreach (var rooms in Collections.Rooms)
             {
                 if (rooms.OnLevel == Map.ActualStair)
                 {
@@ -75,14 +75,14 @@ namespace SmartHome
             Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             Windows.Storage.StorageFile roomFile = await storageFolder.CreateFileAsync("Rooms.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
             string text;
-            ViewManager.Rooms.Clear();
+            Collections.Rooms.Clear();
             var lines = await Windows.Storage.FileIO.ReadLinesAsync(roomFile);
             for (int i =0; i<lines.Count() ;i++)
             {
                 text = lines[i];
                 string[] chopped = text.Split('|');
                 if(chopped.Count() >= 6)
-                ViewManager.Rooms.Add(new Room(double.Parse(chopped[4]), double.Parse(chopped[3]), double.Parse(chopped[1]), double.Parse(chopped[2]), chopped[0], bool.Parse(chopped[5]), int.Parse(chopped[6])));
+                Collections.Rooms.Add(new Room(double.Parse(chopped[4]), double.Parse(chopped[3]), double.Parse(chopped[1]), double.Parse(chopped[2]), chopped[0], bool.Parse(chopped[5]), int.Parse(chopped[6])));
             }
 
              
@@ -92,7 +92,7 @@ namespace SmartHome
         public static async void SaveLisToFile()
         {
             bool isFirst = true;
-            foreach (var room in ViewManager.Rooms)
+            foreach (var room in Collections.Rooms)
             {
                 await room.SaveRoomInToFile(isFirst ? Windows.Storage.CreationCollisionOption.ReplaceExisting : Windows.Storage.CreationCollisionOption.OpenIfExists);
                 isFirst = false;
@@ -123,13 +123,13 @@ namespace SmartHome
         {
             CreatedRoom.GivePosition(btn.Width, btn.Height, Canvas.GetLeft(btn), Canvas.GetTop(btn));
             CreatedRoom.OnLevel = Map.ActualStair;
-            ViewManager.Rooms.Add(CreatedRoom);
+            Collections.Rooms.Add(CreatedRoom);
             CreatedRoom.SaveRoomInToFile();
-            foreach (var id in ViewManager.UnitsToLocalize)
+            foreach (var id in Collections.UnitsToLocalize)
             {
                 CreatedRoom.AddUnit(id);
             }
-            ViewManager.UnitsToLocalize.Clear();
+            Collections.UnitsToLocalize.Clear();
             this.Frame.Navigate(typeof(MainPage));
         }
         

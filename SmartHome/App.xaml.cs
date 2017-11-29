@@ -35,6 +35,7 @@ namespace SmartHome
            
             using (var db = new Model())
             {
+                db.Database.EnsureDeleted();
                 db.Database.Migrate();
             }
         }
