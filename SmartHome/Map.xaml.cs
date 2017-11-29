@@ -66,8 +66,8 @@ namespace SmartHome
              mode = e.Parameter as string;
            switch(mode)
             {
-                case "Selecting": function = OpenRoom; break;
-                case "Localizing": function = AddUnitsToRoom; break;
+                case "Selecting": function = OpenRoom; Text.Visibility = Visibility.Visible; Text.Text = "Your rooms"; break;
+                case "Localizing": function = AddUnitsToRoom; Text.Visibility = Visibility.Visible; Text.Text = "Add unit"; break;
                 case "Switch": function = TurnLightFunction;  break;
                 default: break;
             }
@@ -119,7 +119,7 @@ namespace SmartHome
                 }
                
             }
-            LightControl.Visibility = Visibility.Visible;
+            Text.Visibility = Visibility.Visible;
             ColorInfo.Visibility = Visibility.Visible;
             IsDelete.IsEnabled = false;
         }

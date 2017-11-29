@@ -25,12 +25,23 @@ namespace SmartHome
         public static bool Auto { get; set; } = true;
         public int Level { get; set; } = (int)UserManager.Level;
         public string theme { get; set; } = ThemeManager.CurrentTheme;
+
+        public int Stairs
+        {
+            get { return (int)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        } 
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
+           "Stairs", typeof(int), typeof(MainSettings), new PropertyMetadata(default(string)));
+
         public MainSettings()
         {
             DataContext = this;
             this.InitializeComponent();
             ThemeSelector.ItemsSource = ThemeManager.Themes.Keys;
             ThemeSelector.SelectedValue = ThemeManager.CurrentTheme;
+            Stairs = Map.Stairs;
+            if (Map.Stairs < 1) Down.IsEnabled = false;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -75,6 +86,26 @@ namespace SmartHome
         {
             var combobox = sender as ComboBox;
                 ThemeManager.SetTheme(combobox.SelectedValue.ToString());          
+        }
+
+        private void Up_Click(object sender, RoutedEventArgs e)
+        {
+            Stairs++;
+            Map.Stairs++;
+            Down.IsEnabled = true;
+        }
+
+        private void Down_Click(object sender, RoutedEventArgs e)
+        {
+            if (Stairs >= 1)
+            {
+                Stairs--;
+                Map.Stairs--;
+            }
+            else
+            {
+                Down.IsEnabled = false;
+            }
         }
     }
 }

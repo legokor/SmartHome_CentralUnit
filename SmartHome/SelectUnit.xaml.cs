@@ -58,6 +58,7 @@ namespace SmartHome
             Temp = 0;
             Nodes.ItemsSource = ids;
             ViewManager.ResreshSenderDataEvent += RefreshTemp;
+            RefreshTemp("Init");
         }
 
         public void RefreshTemp(string newSenderId)

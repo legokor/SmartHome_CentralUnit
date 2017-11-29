@@ -82,25 +82,31 @@ namespace SmartHome
                 StartServer();
                 RoomCreater.LoadListFromFile();
 
-                /* var user = new UserClass();
-                  user.Email = "Admin";
-                  user.GetSalt();
-                  user.EncryptedPassword = user.EncodePassword("admin");
-                  user.Level = AccesLevel.Admin;
-                  DBInstance.SaveUser(user);*/
-
-
                 DataElement newel = new DataElement
                 {
-                    Id = "211111111",
-                    Temperature = "25",
-                    Humidity = "25",
+                    Id = "21000000",
+                    Temperature = "35",
+                    Humidity ="20",
                     Movement = "1",
-                    Co = "25",
-                    Lpg = "25",
-                    Smoke = "25"
-                };              
-                DBInstance.SaveData(newel);
+                    Co ="12",
+                    Lpg = "0",
+                    Smoke = "0"
+                };
+                
+
+
+                Unit newUnit = new Unit
+                {
+                    Id = "21000000",
+                    Type = "Switcer",
+                    Auto = true
+                };
+                Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    ViewManager.AddToActualDatas(newel);
+                    ViewManager.UnitsToLocalize.Add(newel.Id);
+                    ViewManager.AddToNodeList(newUnit);
+                });
             }
             this.InitializeComponent();
             DataContext = this;

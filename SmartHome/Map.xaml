@@ -40,17 +40,18 @@
         <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Click="Button_Click" Background="Transparent">
             <Image Source="{StaticResource BackButton}" Width="100" Height="60" MinWidth="50" MinHeight="50"/>
         </Button>
-        <TextBlock x:Name="LightControl" Text="Light control" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold" Visibility="Collapsed"/>
+        <TextBlock x:Name="Text" Text="Light control" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold" Visibility="Collapsed"/>
         <ToggleSwitch x:Name="IsDelete" OffContent="Select" OnContent="Delete" Grid.Column="0" Grid.ColumnSpan="3" Width="100" Height="60" Background="Transparent" HorizontalAlignment="Right" Grid.Row="2" Toggled="IsDelete_Toggled" Style="{StaticResource ToggleSwitchStyle}"  
                       Visibility="{Binding Level, Converter={StaticResource ConverterToNormal}}" />
         
-        <StackPanel Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="3" Orientation="Vertical" HorizontalAlignment="Right" Margin="0,2,0,0">
+        <StackPanel Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Orientation="Vertical" HorizontalAlignment="Left" Margin="-10,0,0,0">
             <Button Click="Up_Click" Background="Transparent">
-                <Image Source="{StaticResource AddRoomButton}" Width="100" Height="60" MinWidth="50" MinHeight="50"/>
+                <Image Source="{StaticResource AddRoomButton}" Width="40" Height="40" MinWidth="40" MinHeight="40"/>
             </Button>
             <Button Click="Down_Click" Background="Transparent">
-                <Image Source="{StaticResource DecreaseButton}" Width="100" Height="60" MinWidth="50" MinHeight="50"/>
+                <Image Source="{StaticResource DecreaseButton}" Width="40" Height="40" MinWidth="40" MinHeight="40"/>
             </Button>
+            <TextBlock Width="40" Height="40" Text="{Binding Path=ActualStair}" HorizontalAlignment="Right" FontWeight="Bold"/>
         </StackPanel>
 
     </Grid>
